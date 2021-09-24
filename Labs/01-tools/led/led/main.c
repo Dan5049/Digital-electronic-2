@@ -21,8 +21,8 @@
  */
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
 #define SHORT_DELAY 250 // Delay in milliseconds
-#define DOT_DELAY   100
-#define DASH_DELAY  300 // dash is 3 times longer than dot
+#define DOT_DELAY   200
+#define DASH_DELAY  600 // dash is 3 times longer than dot
 #ifndef F_CPU           // Preprocessor directive allows for conditional
                         // compilation. The #ifndef means "if not defined".
 # define F_CPU 16000000 // CPU frequency in Hz required for delay
@@ -34,6 +34,20 @@
  */
 #include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
+
+void dot() {
+	_delay_ms(DOT_DELAY);				//Wait for pause
+	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
+	_delay_ms(DOT_DELAY);				//Wait for dot
+	PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off
+}
+
+void dash() {
+	_delay_ms(DOT_DELAY);				//Wait for pause
+	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dash
+	_delay_ms(DASH_DELAY);				//Wait for dash
+	PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off
+}
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -54,12 +68,31 @@ int main(void)
     // Infinite loop
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(DOT_DELAY);
-
-        // Invert LED in Data Register
-        // PORTB = PORTB xor 0010 0000
-        PORTB = PORTB ^ (1<<LED_GREEN);
+        
+		//blink dot_dash
+        /*_delay_ms(DOT_DELAY);				//Wait
+        PORTB = PORTB ^ (1<<LED_GREEN);		//Turn on for dot
+		_delay_ms(DOT_DELAY);				//Wait for dot
+		PORTB = PORTB ^ (1<<LED_GREEN);		//Turn off for pause
+		_delay_ms(DOT_DELAY);				//Wait for pause
+		PORTB = PORTB ^ (1<<LED_GREEN);     //Turn on for dash
+		_delay_ms(DASH_DELAY);				//Wait for dash
+		PORTB = PORTB ^ (1<<LED_GREEN);		//Turn of*/
+		
+		dash();								//D
+		dot();
+		dot();
+		_delay_ms(DOT_DELAY);				//Pause
+		dot();								//E
+		_delay_ms(DOT_DELAY);				//Pause
+		dot();								//2
+		dot();
+		dash();
+		dot();
+		dot();
+		_delay_ms(DASH_DELAY);				//End of a word
+		
+		
     }
 
     // Will never reach this
