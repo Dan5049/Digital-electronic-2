@@ -26,5 +26,6 @@
 ```
 
 ## Scheme
-![Scheme](img/circuit.png)
+![Scheme](images/Circuit.png)
+
 
