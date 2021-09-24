@@ -36,17 +36,17 @@
 #include <avr/io.h>     // AVR device-specific IO definitions
 
 void dot() {
-	_delay_ms(DOT_DELAY);				//Wait for pause
-	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
-	_delay_ms(DOT_DELAY);				//Wait for dot
-	PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off
+	_delay_ms(DOT_DELAY);               //Wait for pause
+	PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dot
+	_delay_ms(DOT_DELAY);               //Wait for dot
+	PORTB = PORTB & ~(1<<LED_GREEN);    //Turn off
 }
 
 void dash() {
-	_delay_ms(DOT_DELAY);				//Wait for pause
-	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dash
-	_delay_ms(DASH_DELAY);				//Wait for dash
-	PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off
+	_delay_ms(DOT_DELAY);               //Wait for pause
+	PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
+	_delay_ms(DASH_DELAY);              //Wait for dash
+	PORTB = PORTB & ~(1<<LED_GREEN);    //Turn off
 }
 
 int main(void)
@@ -62,18 +62,18 @@ int main(void)
     // Infinite loop
     while (1)
     {
-		dash();								//D
+		dash();                  //D
 		dot();
 		dot();
-		_delay_ms(DOT_DELAY);				//Pause
-		dot();								//E
-		_delay_ms(DOT_DELAY);				//Pause
-		dot();								//2
+		_delay_ms(DOT_DELAY);   //Pause
+		dot();                  //E
+		_delay_ms(DOT_DELAY);   //Pause
+		dot();                  //2
 		dot();
 		dash();
 		dot();
 		dot();
-		_delay_ms(DASH_DELAY);				//End of a word
+		_delay_ms(DASH_DELAY);  //End of a word
     }
 
     // Will never reach this
