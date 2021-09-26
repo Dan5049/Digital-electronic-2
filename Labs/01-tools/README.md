@@ -1,28 +1,28 @@
-# Labs/01-tools
+# Labs 1: DANIEL HAVRÁNEK
+Link to your `Digital-electronics-2` GitHub repository:
 
-[Github Digital-electronic-2](https://github.com/Dan5049/Digital-electronic-2)
+(https://github.com/Dan5049/Digital-electronic-2)
 
-## Binary operators
+### Blink example
+1. What is the meaning of the following binary operators in C?
+   * `|`  - OR
+   * `&`  - AND
+   * `^`  - XOR
+   * `~`  - NOT
+   * `<<` - Binary left shift
+   * `>>` - binary right shift
 
-| **symbol** | **meaning** |
-| :-: | :-: | 
-| & | AND |
-| \| | OR | 
-| ^ | XOR | 
-| ~ | NOT | 
-| << | Binary left shift | 
-| >> | Binary right shift | 
+2. Complete truth table with operators: `|`, `&`, `^`, `~`
 
-
-## Truth table
-| **A** | **B** | **A & B** | **A \| B** | **A ^ B** | **~A** |
+| **b** | **a** | **b or a** | **b and a** | **b xor a** | **not b** |
 | :-: | :-: | :-: | :-: | :-: | :-: |
 | 0 | 0 | 0 | 0 | 0 | 1 |
-| 0 | 1 | 0 | 1 | 1 | 1 |
-| 1 | 0 | 0 | 1 | 1 | 0 |
+| 0 | 1 | 1 | 0 | 1 | 1 |
+| 1 | 0 | 1 | 0 | 1 | 0 |
 | 1 | 1 | 1 | 1 | 0 | 0 |
 
-## Morse code
+### Morse code
+1. Listing of C code with syntax highlighting which repeats one "dot" and one "comma" on a LED:
 
 ```c
 #define LED_GREEN   PB5 // AVR pin where green LED is connected
@@ -37,20 +37,6 @@
 #include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
 
-void dot() {
-	_delay_ms(DOT_DELAY);               //Wait for pause
-	PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dot
-	_delay_ms(DOT_DELAY);               //Wait for dot
-	PORTB = PORTB & ~(1<<LED_GREEN);    //Turn off
-}
-
-void dash() {
-	_delay_ms(DOT_DELAY);               //Wait for pause
-	PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
-	_delay_ms(DASH_DELAY);              //Wait for dash
-	PORTB = PORTB & ~(1<<LED_GREEN);    //Turn off
-}
-
 int main(void)
 {
     // Set pin as output in Data Direction Register
@@ -64,18 +50,16 @@ int main(void)
     // Infinite loop
     while (1)
     {
-		dash();                  //D
-		dot();
-		dot();
-		_delay_ms(DOT_DELAY);   //Pause
-		dot();                  //E
-		_delay_ms(DOT_DELAY);   //Pause
-		dot();                  //2
-		dot();
-		dash();
-		dot();
-		dot();
-		_delay_ms(DASH_DELAY);  //End of a word
+        
+		//blink dot_dash
+        _delay_ms(DOT_DELAY);				//Wait
+        PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
+		_delay_ms(DOT_DELAY);				//Wait for dot
+		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off for pause
+		_delay_ms(DOT_DELAY);				//Wait for pause
+		PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
+		_delay_ms(DASH_DELAY);				//Wait for dash
+		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn of
     }
 
     // Will never reach this
@@ -83,7 +67,7 @@ int main(void)
 }
 ```
 
-## Scheme
+2. Scheme of Morse code application, i.e. connection of AVR device, LED, resistor, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 ![Scheme](images/Circuit.png)
 
 

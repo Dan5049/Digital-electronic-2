@@ -1,6 +1,7 @@
-# Labs/02-labs
+# Labs 2: DANIEL HAVRÁNEK
+Link to your `Digital-electronics-2` GitHub repository:
 
-[Github Digital-electronic-2](https://github.com/Dan5049/Digital-electronic-2)
+(https://github.com/Dan5049/Digital-electronic-2)
 
 ## 1. Preparation tasks
 

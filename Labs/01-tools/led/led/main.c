@@ -35,7 +35,8 @@
 #include <util/delay.h> // Functions for busy-wait delay loops
 #include <avr/io.h>     // AVR device-specific IO definitions
 
-void dot() {
+/*---------------------------------------------------------------------*/
+/*void dot() {
 	_delay_ms(DOT_DELAY);				//Wait for pause
 	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
 	_delay_ms(DOT_DELAY);				//Wait for dot
@@ -47,7 +48,8 @@ void dash() {
 	PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dash
 	_delay_ms(DASH_DELAY);				//Wait for dash
 	PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off
-}
+}*/
+/*--------------------------------------------------------------------*/
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -70,16 +72,16 @@ int main(void)
     {
         
 		//blink dot_dash
-        /*_delay_ms(DOT_DELAY);				//Wait
-        PORTB = PORTB ^ (1<<LED_GREEN);		//Turn on for dot
+        _delay_ms(DOT_DELAY);				//Wait
+        PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
 		_delay_ms(DOT_DELAY);				//Wait for dot
-		PORTB = PORTB ^ (1<<LED_GREEN);		//Turn off for pause
+		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off for pause
 		_delay_ms(DOT_DELAY);				//Wait for pause
-		PORTB = PORTB ^ (1<<LED_GREEN);     //Turn on for dash
+		PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
 		_delay_ms(DASH_DELAY);				//Wait for dash
-		PORTB = PORTB ^ (1<<LED_GREEN);		//Turn of*/
+		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn of
 		
-		dash();								//D
+		/*dash();								//D
 		dot();
 		dot();
 		_delay_ms(DOT_DELAY);				//Pause
@@ -90,7 +92,7 @@ int main(void)
 		dash();
 		dot();
 		dot();
-		_delay_ms(DASH_DELAY);				//End of a word
+		_delay_ms(DASH_DELAY);				//End of a word*/
 		
 		
     }
