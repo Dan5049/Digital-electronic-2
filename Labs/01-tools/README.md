@@ -1,16 +1,16 @@
 # Labs 1: DANIEL HAVRÁNEK
 Link to your `Digital-electronics-2` GitHub repository:
 
-(https://github.com/Dan5049/Digital-electronic-2)
+https://github.com/Dan5049/Digital-electronic-2
 
 ### Blink example
 1. What is the meaning of the following binary operators in C?
-   * `|`  - OR
-   * `&`  - AND
-   * `^`  - XOR
-   * `~`  - NOT
+   * `|`  - Bitwise OR
+   * `&`  - Bitwise AND
+   * `^`  - Bitwise XOR
+   * `~`  - Bitwise NOT
    * `<<` - Binary left shift
-   * `>>` - binary right shift
+   * `>>` - Binary right shift
 
 2. Complete truth table with operators: `|`, `&`, `^`, `~`
 
@@ -51,15 +51,15 @@ int main(void)
     while (1)
     {
         
-		//blink dot_dash
-        _delay_ms(DOT_DELAY);				//Wait
-        PORTB = PORTB | (1<<LED_GREEN);		//Turn on for dot
-		_delay_ms(DOT_DELAY);				//Wait for dot
-		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn off for pause
-		_delay_ms(DOT_DELAY);				//Wait for pause
-		PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
-		_delay_ms(DASH_DELAY);				//Wait for dash
-		PORTB = PORTB & ~(1<<LED_GREEN);	//Turn of
+        //blink dot_dash
+        _delay_ms(DOT_DELAY);               //Wait
+        PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dot
+        _delay_ms(DOT_DELAY);               //Wait for dot
+        PORTB = PORTB & ~(1<<LED_GREEN);    //Turn off for pause
+        _delay_ms(DOT_DELAY);               //Wait for pause
+        PORTB = PORTB | (1<<LED_GREEN);     //Turn on for dash
+        _delay_ms(DASH_DELAY);              //Wait for dash
+        PORTB = PORTB & ~(1<<LED_GREEN);    //Turn of
     }
 
     // Will never reach this
