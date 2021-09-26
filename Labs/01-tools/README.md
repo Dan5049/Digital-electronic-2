@@ -1,4 +1,6 @@
-# 01-tools
+# Labs/01-tools
+
+[Github Digital-electronic-2](https://github.com/Dan5049/Digital-electronic-2)
 
 ## Binary operators
 
