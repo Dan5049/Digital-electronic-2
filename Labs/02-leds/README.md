@@ -3,36 +3,9 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 (https://github.com/Dan5049/Digital-electronic-2)
 
-## 1. Preparation tasks
+### Active-low and active-high LEDs
 
-1. Draw two basic ways to connect a LED to the output pin of the microcontroller: LED active-low, LED active-high.
-
-![LED connection](images/ledDiag.png)
-
-2. Rezistor value calculation
-
-![Rezistor value calculation](images/Rezistor_calc.png)
-
-| **LED color** | **Supply voltage** | **LED current** | **LED voltage** | **Rezistor value** | 
-| :-: | :-: | :-: | :-: | :-: |
-| red | 5 V | 20 mA | 2 V | 150 Ω|
-| blue | 5 V | 20 mA | 3,2 V | 90 Ω |
-
-3. Draw the basic ways to connect a push button to the microcontroller input pin: button active-low, button active-high.
-
-![Button connection](images/butDiag.png)
-
-## Part 2: Active-low and active-high LEDs
-
-AVR microcontroller associates pins into so-called ports, which are marked with the letters A, B, C, etc. Each of the pins is controlled separately and can function as an input (entry) or output (exit) point of the microcontroller. Control is possible exclusively by software via control registers.
-
-There are exactly three control registers for each port: DDR, PORT and PIN, supplemented by the letter designation of the port. For port A these are registers DDRA, PORTA and PINA, for port B registers DDRB, PORTB, PINB, etc.
-
-DDR (Data Direction Register) is used to set the input/output direction of port communication, PORT is the output data port and PIN works for reading input values from the port.
-
-A detailed description of working with input/output ports can be found in [ATmega328P datasheet](https://www.microchip.com/wwwproducts/en/ATmega328p) in section I/O-Ports.
-
-Use the datasheet to find out the meaning of the DDRB and PORTB control register values and their combinations. (Let PUD (Pull-up Disable) bit in MCUCR (MCU Control Register) is 0 by default.)
+1. Complete tables according to the AVR manual.
 
 | **DDRB** | **Description** |
 | :-: | :-- |
@@ -51,34 +24,91 @@ Use the datasheet to find out the meaning of the DDRB and PORTB control register
 | 1 | 0 | output | no | Output Low (Sink) |
 | 1 | 1 | output | no | Output High (Source) |
 
-See [schematic of Arduino Uno board](../../Docs/arduino_shield.pdf) in docs folder of Digital-electronics-2 repository and find out which pins of ATmega328P can be used as input/output pins. To which pin is the LED L connected? Is it connected as active-low or active-high? Note that labels on Arduino `~3`, `~5`, etc. do not mean that the signals are inverted; the `~` symbol indicates that a PWM (Pulse-width modulation) signal can be generated on these pins.
+2. Part of the C code listing with syntax highlighting, which blinks alternately with a pair of LEDs; let one LED is connected to port B and the other to port C:
 
-| **Port** | **Pin** | **Input/output usage?** |
-| :-: | :-: | :-- |
-| A | x | Microcontroller ATmega328P does not contain port A |
-| B | 0 | Yes (Arduino pin 8) |
-|   | 1 |  |
-|   | 2 |  |
-|   | 3 |  |
-|   | 4 |  |
-|   | 5 |  |
-|   | 6 |  |
-|   | 7 |  |
-| C | 0 | Yes (Arduino pin A0) |
-|   | 1 |  |
-|   | 2 |  |
-|   | 3 |  |
-|   | 4 |  |
-|   | 5 |  |
-|   | 6 |  |
-|   | 7 |  |
-| D | 0 | Yes (Arduino pin RX<-0) |
-|   | 1 |  |
-|   | 2 |  |
-|   | 3 |  |
-|   | 4 |  |
-|   | 5 |  |
-|   | 6 |  |
-|   | 7 |  |
+```c
+#define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define LED_RED     PC0     // AVR pin where red LED is connected
+#define BLINK_DELAY 500
+#ifndef F_CPU
+# define F_CPU 16000000     // CPU frequency in Hz required for delay
+#endif
 
-Use breadboard (or SimulIDE real time electronic circuit simulator), connect resistor and second LED to Arduino output pin in active-low way. **Let the second LED is connected to port C.**
+#include <util/delay.h>     // Functions for busy-wait delay loops
+#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/sfr_defs.h>   //button library i guess
+
+{
+    // Green LED at port B
+    // Set pin as output in Data Direction Register...
+    DDRB = DDRB | (1<<LED_GREEN);
+    // ...and turn LED off in Data Register
+    PORTB = PORTB & ~(1<<LED_GREEN);
+
+    // Configure the second LED at port C
+    DDRC = DDRC | (1<<LED_RED);
+    PORTC = PORTC & ~(1<<LED_RED);
+    
+    while (1)
+    {
+        blinking leds
+        _delay_ms(BLINK_DELAY);             //wait for red led
+        PORTB = PORTB & ~(1<<LED_GREEN);    //turn on green led
+        PORTC = PORTC & ~(1<<LED_RED);      //turn off red led
+        _delay_ms(BLINK_DELAY);             //wait for green led
+        PORTB = PORTB | (1<<LED_GREEN);     //turn off green led
+        PORTC = PORTC | (1<<LED_RED);       //turn on red led
+    }
+    return 0;
+}
+```
+
+### Push button
+
+1. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Let the push button is connected to port D:
+
+```c
+#define LED_GREEN   PB5     // AVR pin where green LED is connected
+#define LED_RED     PC0     // AVR pin where red LED is connected
+#define BTN         PD2     //AVR pin where button is connected
+#define BLINK_DELAY 500
+#ifndef F_CPU
+# define F_CPU 16000000     // CPU frequency in Hz required for delay
+#endif
+
+#include <util/delay.h>     // Functions for busy-wait delay loops
+#include <avr/io.h>         // AVR device-specific IO definitions
+#include <avr/sfr_defs.h>   //button library i guess
+
+int main(void)
+{
+    DDRB = DDRB | (1<<LED_GREEN);
+    PORTB = PORTB & ~(1<<LED_GREEN);
+
+    // Configure the second LED at port C
+    DDRC = DDRC | (1<<LED_RED);
+    PORTC = PORTC & ~(1<<LED_RED);
+
+    // Configure Push button at port D and enable internal pull-up resistor
+    DDRD = DDRD & ~(1<<BTN);
+    PORTD = PORTD | (1<<BTN);
+    
+
+    // Infinite loop
+    while (1)
+    {
+        if (bit_is_clear(PIND, PD2)){
+            PORTB = PORTB ^ (1<<LED_GREEN);
+            PORTC = PORTC ^ (1<<LED_RED);
+            loop_until_bit_is_clear(PIND, BTN);
+        }
+    }
+    return 0;
+}
+```
+
+### Knight Rider
+
+1. Scheme of Knight Rider application, i.e. connection of AVR device, five LEDs, resistors, one push button, and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
+
+   ![Knight Rider](images/KnightRider.png)
