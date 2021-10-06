@@ -11,6 +11,7 @@
 
 /* Includes ----------------------------------------------------------*/
 #include "gpio.h"
+#include <avr/sfr_defs.h>
 
 /* Function definitions ----------------------------------------------*/
 /**********************************************************************
@@ -23,13 +24,19 @@
 void GPIO_config_output(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name | (1<<pin_num);
-    reg_name++;
-    *reg_name = *reg_name & ~(1<<pin_num)
+    //reg_name++;
+    //*reg_name = *reg_name | (1<<pin_num);
 }
 
 /**********************************************************************
  * Function: GPIO_config_input_nopull()
  **********************************************************************/
+void GPIO_config_input_nopull(volatile uint8_t *reg_name, uint8_t pin_num)
+{
+    *reg_name = *reg_name & ~(1<<pin_num);  // Data Direction Register
+    reg_name++;                     // Change pointer to Data Register
+    *reg_name = *reg_name & ~(1<<pin_num);   // Data Register
+}
 
 /**********************************************************************
  * Function: GPIO_config_input_pullup()
@@ -55,18 +62,38 @@ void GPIO_config_input_pullup(volatile uint8_t *reg_name, uint8_t pin_num)
 void GPIO_write_low(volatile uint8_t *reg_name, uint8_t pin_num)
 {
     *reg_name = *reg_name & ~(1<<pin_num);
-    reg_name++;
-    *reg_name = *reg_name & ~(1<<pin_num)
+    //reg_name++;
+    //*reg_name = *reg_name | (1<<pin_num);
 }
 
 /**********************************************************************
  * Function: GPIO_write_high()
  **********************************************************************/
+void GPIO_write_high(volatile uint8_t *reg_name, uint8_t pin_num)
+{
+    *reg_name = *reg_name | (1<<pin_num);
+    //reg_name++;
+   //*reg_name = *reg_name | (1<<pin_num);
+}
+
 
 /**********************************************************************
  * Function: GPIO_toggle()
  **********************************************************************/
 
+void GPIO_toggle(volatile uint8_t *reg_name, uint8_t pin_num)
+{
+    *reg_name = *reg_name ^ (1<<pin_num);
+    //reg_name++;
+    //*reg_name = *reg_name | (1<<pin_num);
+}
+
 /**********************************************************************
  * Function: GPIO_read()
  **********************************************************************/
+
+uint8_t GPIO_read(volatile uint8_t *reg_name, uint8_t pin_num) 
+{
+    //return(*reg_name & (1<pin_num));
+    return(bit_is_set(*reg_name, pin_num));
+}    
