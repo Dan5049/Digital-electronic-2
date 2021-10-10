@@ -28,17 +28,22 @@ Link to your `Digital-electronics-2` GitHub repository:
 2. Part of the C code listing with syntax highlighting, which toggles LEDs only if push button is pressed. Otherwise, the value of the LEDs does not change. Use function from your GPIO library. Let the push button is connected to port D:
 
 ```c
+int main(void)
+{
     // Configure Push button at port D and enable internal pull-up resistor
-    // WRITE YOUR CODE HERE
-
-    // Infinite loop
+    GPIO_config_input_pullup(&DDRD, BTN);
+   
     while (1)
     {
-        // Pause several milliseconds
-        _delay_ms(BLINK_DELAY);
 
-        // WRITE YOUR CODE HERE
-    }
+		   if (GPIO_read(&PIND, BTN) == 0) {
+			   GPIO_toggle(&PORTB, LED_GREEN);
+			   GPIO_toggle(&PORTC, LED_RED);
+			   _delay_ms(BLINK_DELAY);     
+		}
+	}
+	return 0;
+}
 ```
 
 
@@ -46,4 +51,4 @@ Link to your `Digital-electronics-2` GitHub repository:
 
 1. Scheme of traffic light application with one red/yellow/green light for cars and one red/green light for pedestrians. Connect AVR device, LEDs, resistors, one push button (for pedestrians), and supply voltage. The image can be drawn on a computer or by hand. Always name all components and their values!
 
-   ![your figure]()
+   ![Traffic Light](images/TrafficLight.png)
