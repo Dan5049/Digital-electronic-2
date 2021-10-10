@@ -30,19 +30,18 @@ Link to your `Digital-electronics-2` GitHub repository:
 ```c
 int main(void)
 {
-    // Configure Push button at port D and enable internal pull-up resistor
-    GPIO_config_input_pullup(&DDRD, BTN);
+   // Configure Push button at port D and enable internal pull-up resistor
+   GPIO_config_input_pullup(&DDRD, BTN);
    
-    while (1)
-    {
-
-		   if (GPIO_read(&PIND, BTN) == 0) {
-			   GPIO_toggle(&PORTB, LED_GREEN);
-			   GPIO_toggle(&PORTC, LED_RED);
-			   _delay_ms(BLINK_DELAY);     
-		}
-	}
-	return 0;
+   while (1)
+   {
+      if (GPIO_read(&PIND, BTN) == 0) {
+         GPIO_toggle(&PORTB, LED_GREEN);
+         GPIO_toggle(&PORTC, LED_RED);
+         _delay_ms(BLINK_DELAY);     
+      }
+    }
+    return 0;
 }
 ```
 
