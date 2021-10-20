@@ -1,0 +1,296 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_Module:Arduino_UNO_R3 A1
+U 1 1 61703D97
+P 4200 4000
+F 0 "A1" H 4200 5181 50  0000 C CNN
+F 1 "Arduino_UNO_R3" H 4200 5090 50  0000 C CNN
+F 2 "Module:Arduino_UNO_R3" H 4200 4000 50  0001 C CIN
+F 3 "https://www.arduino.cc/en/Main/arduinoBoardUno" H 4200 4000 50  0001 C CNN
+	1    4200 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 61704823
+P 4200 5450
+F 0 "#PWR04" H 4200 5200 50  0001 C CNN
+F 1 "GND" H 4205 5277 50  0000 C CNN
+F 2 "" H 4200 5450 50  0001 C CNN
+F 3 "" H 4200 5450 50  0001 C CNN
+	1    4200 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR01
+U 1 1 61705268
+P 4400 2850
+F 0 "#PWR01" H 4400 2700 50  0001 C CNN
+F 1 "+5V" H 4415 3023 50  0000 C CNN
+F 2 "" H 4400 2850 50  0001 C CNN
+F 3 "" H 4400 2850 50  0001 C CNN
+	1    4400 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4400 3000 4400 2850
+Wire Wire Line
+	4200 5100 4200 5250
+Wire Wire Line
+	4100 5100 4100 5250
+Wire Wire Line
+	4100 5250 4200 5250
+Connection ~ 4200 5250
+Wire Wire Line
+	4200 5250 4200 5450
+Wire Wire Line
+	4300 5100 4300 5250
+Wire Wire Line
+	4300 5250 4200 5250
+$Comp
+L Switch:SW_Push SW1
+U 1 1 61707D3C
+P 3150 4400
+F 0 "SW1" H 3150 4685 50  0000 C CNN
+F 1 "SW_Push" H 3150 4594 50  0000 C CNN
+F 2 "" H 3150 4600 50  0001 C CNN
+F 3 "~" H 3150 4600 50  0001 C CNN
+	1    3150 4400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 61708099
+P 2900 5250
+F 0 "D1" H 2893 5467 50  0000 C CNN
+F 1 "LED" H 2893 5376 50  0000 C CNN
+F 2 "" H 2900 5250 50  0001 C CNN
+F 3 "~" H 2900 5250 50  0001 C CNN
+	1    2900 5250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 61708D1D
+P 3300 5250
+F 0 "R1" V 3093 5250 50  0000 C CNN
+F 1 "1k" V 3184 5250 50  0000 C CNN
+F 2 "" V 3230 5250 50  0001 C CNN
+F 3 "~" H 3300 5250 50  0001 C CNN
+	1    3300 5250
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR03
+U 1 1 6170A8CA
+P 2550 5400
+F 0 "#PWR03" H 2550 5150 50  0001 C CNN
+F 1 "GND" H 2555 5227 50  0000 C CNN
+F 2 "" H 2550 5400 50  0001 C CNN
+F 3 "" H 2550 5400 50  0001 C CNN
+	1    2550 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4700 3600 4700
+Wire Wire Line
+	3600 4700 3600 5250
+Wire Wire Line
+	3600 5250 3450 5250
+Wire Wire Line
+	3150 5250 3050 5250
+Wire Wire Line
+	2750 5250 2550 5250
+Wire Wire Line
+	2550 5250 2550 5400
+Wire Wire Line
+	3700 4400 3350 4400
+Wire Wire Line
+	2950 4400 1950 4400
+$Comp
+L Display_Character:CA56-12EWA U1
+U 1 1 6170FF8E
+P 5500 1850
+F 0 "U1" H 5500 2517 50  0000 C CNN
+F 1 "CA56-12EWA" H 5500 2426 50  0000 C CNN
+F 2 "Display_7Segment:CA56-12EWA" H 5500 1250 50  0001 C CNN
+F 3 "http://www.kingbrightusa.com/images/catalog/SPEC/CA56-12EWA.pdf" H 5070 1880 50  0001 C CNN
+	1    5500 1850
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC595 U2
+U 1 1 61712FD5
+P 2200 1950
+F 0 "U2" H 2200 2731 50  0000 C CNN
+F 1 "74HC595" H 2200 2640 50  0000 C CNN
+F 2 "" H 2200 1950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 2200 1950 50  0001 C CNN
+	1    2200 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L 74xx:74HC595 U3
+U 1 1 61713ECB
+P 3850 1950
+F 0 "U3" H 3850 2731 50  0000 C CNN
+F 1 "74HC595" H 3850 2640 50  0000 C CNN
+F 2 "" H 3850 1950 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/sn74hc595.pdf" H 3850 1950 50  0001 C CNN
+	1    3850 1950
+	1    0    0    -1  
+$EndComp
+Text GLabel 3250 4000 0    50   Input ~ 0
+SER
+Text GLabel 1450 1550 0    50   Input ~ 0
+SER
+Text GLabel 3250 3900 0    50   Input ~ 0
+SCLK
+Text GLabel 1450 1750 0    50   Input ~ 0
+SCLK
+Text GLabel 3250 3800 0    50   Input ~ 0
+RCLK
+Text GLabel 1450 2050 0    50   Input ~ 0
+RCLK
+Wire Wire Line
+	3700 4200 3400 4200
+Wire Wire Line
+	3400 4200 3400 4000
+Wire Wire Line
+	3400 4000 3250 4000
+Wire Wire Line
+	3700 4100 3450 4100
+Wire Wire Line
+	3450 4100 3450 3900
+Wire Wire Line
+	3450 3900 3250 3900
+Wire Wire Line
+	3700 4000 3500 4000
+Wire Wire Line
+	3500 4000 3500 3800
+Wire Wire Line
+	3500 3800 3250 3800
+Wire Wire Line
+	1800 1550 1450 1550
+Wire Wire Line
+	1800 1750 1450 1750
+Wire Wire Line
+	1800 2050 1450 2050
+Wire Wire Line
+	2600 2450 3250 2450
+Wire Wire Line
+	3250 2450 3250 1550
+Wire Wire Line
+	3250 1550 3450 1550
+Wire Wire Line
+	4250 1550 4400 1550
+Wire Wire Line
+	4250 1650 4400 1650
+Wire Wire Line
+	4250 1750 4400 1750
+Wire Wire Line
+	4250 1850 4400 1850
+Wire Wire Line
+	4250 1950 4400 1950
+Wire Wire Line
+	4250 2050 4400 2050
+Wire Wire Line
+	4250 2150 4400 2150
+Wire Wire Line
+	4250 2250 4400 2250
+Text GLabel 2700 1550 2    50   Input ~ 0
+CA1
+Text GLabel 2700 1650 2    50   Input ~ 0
+CA2
+Text GLabel 2700 1750 2    50   Input ~ 0
+CA3
+Text GLabel 2700 1850 2    50   Input ~ 0
+CA4
+Text GLabel 6750 1950 2    50   Input ~ 0
+CA1
+Text GLabel 6750 2050 2    50   Input ~ 0
+CA2
+Text GLabel 6750 2150 2    50   Input ~ 0
+CA3
+Text GLabel 6750 2250 2    50   Input ~ 0
+CA4
+Wire Wire Line
+	2600 1550 2700 1550
+Wire Wire Line
+	2600 1650 2700 1650
+Wire Wire Line
+	2600 1750 2700 1750
+Wire Wire Line
+	2600 1850 2700 1850
+Wire Wire Line
+	6600 1950 6750 1950
+Wire Wire Line
+	6600 2050 6750 2050
+Wire Wire Line
+	6600 2150 6750 2150
+Wire Wire Line
+	6600 2250 6750 2250
+$Comp
+L Switch:SW_Push SW2
+U 1 1 61707B10
+P 2750 4500
+F 0 "SW2" H 2750 4785 50  0000 C CNN
+F 1 "SW_Push" H 2750 4694 50  0000 C CNN
+F 2 "" H 2750 4700 50  0001 C CNN
+F 3 "~" H 2750 4700 50  0001 C CNN
+	1    2750 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 6170E371
+P 1950 4700
+F 0 "#PWR02" H 1950 4450 50  0001 C CNN
+F 1 "GND" H 1955 4527 50  0000 C CNN
+F 2 "" H 1950 4700 50  0001 C CNN
+F 3 "" H 1950 4700 50  0001 C CNN
+	1    1950 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1950 4600 1950 4700
+Connection ~ 1950 4600
+Wire Wire Line
+	2150 4600 1950 4600
+Wire Wire Line
+	1950 4400 1950 4500
+Wire Wire Line
+	1950 4500 1950 4600
+Connection ~ 1950 4500
+Wire Wire Line
+	2550 4500 1950 4500
+$Comp
+L Switch:SW_Push SW3
+U 1 1 617067DB
+P 2350 4600
+F 0 "SW3" H 2350 4885 50  0000 C CNN
+F 1 "SW_Push" H 2350 4794 50  0000 C CNN
+F 2 "" H 2350 4800 50  0001 C CNN
+F 3 "~" H 2350 4800 50  0001 C CNN
+	1    2350 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3700 4500 2950 4500
+Wire Wire Line
+	2550 4600 3700 4600
+$EndSCHEMATC

@@ -68,11 +68,21 @@ void SEG_init(void);
 void SEG_update_shift_regs(uint8_t segments, uint8_t position);
 
 
-/* SEG_clear */
+/**
+ * @brief  Clear segments of the display
+ * @note   Two shift registers are connected in series, ie 16 bits are trensmitted
+ * @return none
+ SEG_clear */
 
+void SEG_clear(void);
 
-/* SEG_clk_2us */
-
+/* 
+/**
+ * @brief  Sets clock to 2us
+ * @note   none
+ * @return none
+SEG_clk_2us */
+void SEG_clk_2us(void);
 
 /** @} */
 
