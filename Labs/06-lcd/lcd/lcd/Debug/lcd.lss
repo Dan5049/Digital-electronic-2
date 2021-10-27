@@ -3,31 +3,31 @@ lcd.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000038  00800100  0000048c  00000520  2**0
+  0 .data         00000044  00800100  00000506  0000059a  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         0000048c  00000000  00000000  00000094  2**1
+  1 .text         00000506  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          00000005  00800138  00800138  00000558  2**0
+  2 .bss          00000006  00800144  00800144  000005de  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000558  2**0
+  3 .comment      00000030  00000000  00000000  000005de  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000588  2**2
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000610  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 000000b0  00000000  00000000  000005c8  2**0
+  5 .debug_aranges 000000b0  00000000  00000000  00000650  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000124b  00000000  00000000  00000678  2**0
+  6 .debug_info   000013cd  00000000  00000000  00000700  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000997  00000000  00000000  000018c3  2**0
+  7 .debug_abbrev 000009e9  00000000  00000000  00001acd  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   0000086d  00000000  00000000  0000225a  2**0
+  8 .debug_line   00000972  00000000  00000000  000024b6  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000001f0  00000000  00000000  00002ac8  2**2
+  9 .debug_frame  000001f0  00000000  00000000  00002e28  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    000004f9  00000000  00000000  00002cb8  2**0
+ 10 .debug_str    000004ef  00000000  00000000  00003018  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    0000092c  00000000  00000000  000031b1  2**0
+ 11 .debug_loc    00000a02  00000000  00000000  00003507  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 000000a8  00000000  00000000  00003add  2**0
+ 12 .debug_ranges 000000a8  00000000  00000000  00003f09  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -42,14 +42,14 @@ Disassembly of section .text:
   18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  24:	0c 94 46 01 	jmp	0x28c	; 0x28c <__vector_9>
+  24:	0c 94 55 01 	jmp	0x2aa	; 0x2aa <__vector_9>
   28:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   2c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   30:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   34:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   38:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  40:	0c 94 d1 01 	jmp	0x3a2	; 0x3a2 <__vector_16>
+  40:	0c 94 04 02 	jmp	0x408	; 0x408 <__vector_16>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   48:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -72,18 +72,18 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	ec e8       	ldi	r30, 0x8C	; 140
-  7c:	f4 e0       	ldi	r31, 0x04	; 4
+  7a:	e6 e0       	ldi	r30, 0x06	; 6
+  7c:	f5 e0       	ldi	r31, 0x05	; 5
   7e:	02 c0       	rjmp	.+4      	; 0x84 <__do_copy_data+0x10>
   80:	05 90       	lpm	r0, Z+
   82:	0d 92       	st	X+, r0
-  84:	a8 33       	cpi	r26, 0x38	; 56
+  84:	a4 34       	cpi	r26, 0x44	; 68
   86:	b1 07       	cpc	r27, r17
   88:	d9 f7       	brne	.-10     	; 0x80 <__do_copy_data+0xc>
 
 0000008a <__do_clear_bss>:
   8a:	21 e0       	ldi	r18, 0x01	; 1
-  8c:	a8 e3       	ldi	r26, 0x38	; 56
+  8c:	a4 e4       	ldi	r26, 0x44	; 68
   8e:	b1 e0       	ldi	r27, 0x01	; 1
   90:	01 c0       	rjmp	.+2      	; 0x94 <.do_clear_bss_start>
 
@@ -91,11 +91,11 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	ad 33       	cpi	r26, 0x3D	; 61
+  94:	aa 34       	cpi	r26, 0x4A	; 74
   96:	b2 07       	cpc	r27, r18
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 fa 00 	call	0x1f4	; 0x1f4 <main>
-  9e:	0c 94 44 02 	jmp	0x488	; 0x488 <_exit>
+  9e:	0c 94 81 02 	jmp	0x502	; 0x502 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -330,7 +330,7 @@ void lcd_init(uint8_t dispAttr)
  1f2:	08 95       	ret
 
 000001f4 <main>:
-};
+// Custom character definition using https://omerk.github.io/lcdchargen/
 
 int main(void)
 {
@@ -338,451 +338,523 @@ int main(void)
     lcd_init(LCD_DISP_ON);
  1f4:	8c e0       	ldi	r24, 0x0C	; 12
  1f6:	0e 94 b8 00 	call	0x170	; 0x170 <lcd_init>
-    lcd_puts("LCD Test");
-    lcd_putc('!');*/
-
-    // Configure 8-bit Timer/Counter2 for Stopwatch
-    // Set the overflow prescaler to 16 ms and enable interrupt
-    TIM2_16m();
- 1fa:	e1 eb       	ldi	r30, 0xB1	; 177
- 1fc:	f0 e0       	ldi	r31, 0x00	; 0
- 1fe:	80 81       	ld	r24, Z
- 200:	87 60       	ori	r24, 0x07	; 7
- 202:	80 83       	st	Z, r24
-    TIM2_overflow_interrupt_enable();
- 204:	e0 e7       	ldi	r30, 0x70	; 112
- 206:	f0 e0       	ldi	r31, 0x00	; 0
- 208:	80 81       	ld	r24, Z
- 20a:	81 60       	ori	r24, 0x01	; 1
- 20c:	80 83       	st	Z, r24
-    TIM0_overflow_16ms();
- 20e:	85 b5       	in	r24, 0x25	; 37
- 210:	8d 7f       	andi	r24, 0xFD	; 253
- 212:	85 bd       	out	0x25, r24	; 37
- 214:	85 b5       	in	r24, 0x25	; 37
- 216:	85 60       	ori	r24, 0x05	; 5
- 218:	85 bd       	out	0x25, r24	; 37
-    TIM0_overflow_interrupt_enable();
- 21a:	ee e6       	ldi	r30, 0x6E	; 110
- 21c:	f0 e0       	ldi	r31, 0x00	; 0
- 21e:	80 81       	ld	r24, Z
- 220:	81 60       	ori	r24, 0x01	; 1
- 222:	80 83       	st	Z, r24
-
-    // Enables interrupts by setting the global interrupt mask
-    sei();
- 224:	78 94       	sei
-    
-    lcd_init(LCD_DISP_ON);
- 226:	8c e0       	ldi	r24, 0x0C	; 12
- 228:	0e 94 b8 00 	call	0x170	; 0x170 <lcd_init>
 
     // Set pointer to beginning of CGRAM memory
     lcd_command(1 << LCD_CGRAM);
- 22c:	80 e4       	ldi	r24, 0x40	; 64
- 22e:	0e 94 8e 00 	call	0x11c	; 0x11c <lcd_command>
- 232:	c0 e0       	ldi	r28, 0x00	; 0
- 234:	d1 e0       	ldi	r29, 0x01	; 1
- 236:	00 e3       	ldi	r16, 0x30	; 48
- 238:	11 e0       	ldi	r17, 0x01	; 1
+ 1fa:	80 e4       	ldi	r24, 0x40	; 64
+ 1fc:	0e 94 8e 00 	call	0x11c	; 0x11c <lcd_command>
+ 200:	c0 e0       	ldi	r28, 0x00	; 0
+ 202:	d1 e0       	ldi	r29, 0x01	; 1
+ 204:	00 e3       	ldi	r16, 0x30	; 48
+ 206:	11 e0       	ldi	r17, 0x01	; 1
     for (uint8_t i = 0; i < 48; i++)
     {
         // Store all new chars to memory line by line
         lcd_data(customChar[i]);
- 23a:	89 91       	ld	r24, Y+
- 23c:	0e 94 92 00 	call	0x124	; 0x124 <lcd_data>
-    
+ 208:	89 91       	ld	r24, Y+
+ 20a:	0e 94 92 00 	call	0x124	; 0x124 <lcd_data>
+    // Initialize LCD display
     lcd_init(LCD_DISP_ON);
 
     // Set pointer to beginning of CGRAM memory
     lcd_command(1 << LCD_CGRAM);
     for (uint8_t i = 0; i < 48; i++)
- 240:	c0 17       	cp	r28, r16
- 242:	d1 07       	cpc	r29, r17
- 244:	d1 f7       	brne	.-12     	; 0x23a <main+0x46>
+ 20e:	c0 17       	cp	r28, r16
+ 210:	d1 07       	cpc	r29, r17
+ 212:	d1 f7       	brne	.-12     	; 0x208 <main+0x14>
     {
         // Store all new chars to memory line by line
         lcd_data(customChar[i]);
     }
     // Set DDRAM address
     lcd_command(1 << LCD_DDRAM);
- 246:	80 e8       	ldi	r24, 0x80	; 128
- 248:	0e 94 8e 00 	call	0x11c	; 0x11c <lcd_command>
+ 214:	80 e8       	ldi	r24, 0x80	; 128
+ 216:	0e 94 8e 00 	call	0x11c	; 0x11c <lcd_command>
     
     // Display first custom character
     lcd_clrscr();
- 24c:	0e 94 a0 00 	call	0x140	; 0x140 <lcd_clrscr>
-    lcd_gotoxy(1, 0);
- 250:	60 e0       	ldi	r22, 0x00	; 0
- 252:	81 e0       	ldi	r24, 0x01	; 1
- 254:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
-    lcd_puts("00:00.0");
- 258:	80 e3       	ldi	r24, 0x30	; 48
- 25a:	91 e0       	ldi	r25, 0x01	; 1
- 25c:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
-    lcd_gotoxy(11, 0);
- 260:	60 e0       	ldi	r22, 0x00	; 0
- 262:	8b e0       	ldi	r24, 0x0B	; 11
- 264:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
-    lcd_putc('a');
- 268:	81 e6       	ldi	r24, 0x61	; 97
- 26a:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
-    lcd_gotoxy(0, 1);
- 26e:	61 e0       	ldi	r22, 0x01	; 1
- 270:	80 e0       	ldi	r24, 0x00	; 0
- 272:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
-    lcd_putc(0);
- 276:	80 e0       	ldi	r24, 0x00	; 0
- 278:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
-    lcd_gotoxy(11, 1);
- 27c:	61 e0       	ldi	r22, 0x01	; 1
- 27e:	8b e0       	ldi	r24, 0x0B	; 11
- 280:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
-    lcd_putc('c');
- 284:	83 e6       	ldi	r24, 0x63	; 99
- 286:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
- 28a:	ff cf       	rjmp	.-2      	; 0x28a <main+0x96>
+ 21a:	0e 94 a0 00 	call	0x140	; 0x140 <lcd_clrscr>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
 
-0000028c <__vector_9>:
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 21e:	2f ef       	ldi	r18, 0xFF	; 255
+ 220:	81 ee       	ldi	r24, 0xE1	; 225
+ 222:	94 e0       	ldi	r25, 0x04	; 4
+ 224:	21 50       	subi	r18, 0x01	; 1
+ 226:	80 40       	sbci	r24, 0x00	; 0
+ 228:	90 40       	sbci	r25, 0x00	; 0
+ 22a:	e1 f7       	brne	.-8      	; 0x224 <main+0x30>
+ 22c:	00 c0       	rjmp	.+0      	; 0x22e <main+0x3a>
+ 22e:	00 00       	nop
+	_delay_ms(100);
+    lcd_gotoxy(1, 0);
+ 230:	60 e0       	ldi	r22, 0x00	; 0
+ 232:	81 e0       	ldi	r24, 0x01	; 1
+ 234:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+    lcd_puts("00:00.0");
+ 238:	80 e3       	ldi	r24, 0x30	; 48
+ 23a:	91 e0       	ldi	r25, 0x01	; 1
+ 23c:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
+    lcd_gotoxy(11, 0);
+ 240:	60 e0       	ldi	r22, 0x00	; 0
+ 242:	8b e0       	ldi	r24, 0x0B	; 11
+ 244:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+    lcd_putc('a');
+ 248:	81 e6       	ldi	r24, 0x61	; 97
+ 24a:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+    lcd_gotoxy(1, 1);
+ 24e:	61 e0       	ldi	r22, 0x01	; 1
+ 250:	81 e0       	ldi	r24, 0x01	; 1
+ 252:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+    lcd_putc('b');
+ 256:	82 e6       	ldi	r24, 0x62	; 98
+ 258:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+    lcd_gotoxy(11, 1);
+ 25c:	61 e0       	ldi	r22, 0x01	; 1
+ 25e:	8b e0       	ldi	r24, 0x0B	; 11
+ 260:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+    lcd_putc('c');
+ 264:	83 e6       	ldi	r24, 0x63	; 99
+ 266:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+ 26a:	2f ef       	ldi	r18, 0xFF	; 255
+ 26c:	84 e3       	ldi	r24, 0x34	; 52
+ 26e:	9c e0       	ldi	r25, 0x0C	; 12
+ 270:	21 50       	subi	r18, 0x01	; 1
+ 272:	80 40       	sbci	r24, 0x00	; 0
+ 274:	90 40       	sbci	r25, 0x00	; 0
+ 276:	e1 f7       	brne	.-8      	; 0x270 <main+0x7c>
+ 278:	00 c0       	rjmp	.+0      	; 0x27a <main+0x86>
+ 27a:	00 00       	nop
+	_delay_ms(250);
+	/*lcd_gotoxy(1, 1);
+	lcd_putc(' ');*/
+	
+	TIM2_16m();
+ 27c:	e1 eb       	ldi	r30, 0xB1	; 177
+ 27e:	f0 e0       	ldi	r31, 0x00	; 0
+ 280:	80 81       	ld	r24, Z
+ 282:	87 60       	ori	r24, 0x07	; 7
+ 284:	80 83       	st	Z, r24
+	TIM2_overflow_interrupt_enable();
+ 286:	e0 e7       	ldi	r30, 0x70	; 112
+ 288:	f0 e0       	ldi	r31, 0x00	; 0
+ 28a:	80 81       	ld	r24, Z
+ 28c:	81 60       	ori	r24, 0x01	; 1
+ 28e:	80 83       	st	Z, r24
+	TIM0_overflow_16ms();
+ 290:	85 b5       	in	r24, 0x25	; 37
+ 292:	8d 7f       	andi	r24, 0xFD	; 253
+ 294:	85 bd       	out	0x25, r24	; 37
+ 296:	85 b5       	in	r24, 0x25	; 37
+ 298:	85 60       	ori	r24, 0x05	; 5
+ 29a:	85 bd       	out	0x25, r24	; 37
+	TIM0_overflow_interrupt_enable();
+ 29c:	ee e6       	ldi	r30, 0x6E	; 110
+ 29e:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a0:	80 81       	ld	r24, Z
+ 2a2:	81 60       	ori	r24, 0x01	; 1
+ 2a4:	80 83       	st	Z, r24
+
+	sei();
+ 2a6:	78 94       	sei
+ 2a8:	ff cf       	rjmp	.-2      	; 0x2a8 <main+0xb4>
+
+000002aa <__vector_9>:
  * Function: Timer/Counter2 overflow interrupt
  * Purpose:  Update the stopwatch on LCD display every sixth overflow,
  *           ie approximately every 100 ms (6 x 16 ms = 100 ms).
  **********************************************************************/
 ISR(TIMER2_OVF_vect)
 {
- 28c:	1f 92       	push	r1
- 28e:	0f 92       	push	r0
- 290:	0f b6       	in	r0, 0x3f	; 63
- 292:	0f 92       	push	r0
- 294:	11 24       	eor	r1, r1
- 296:	2f 93       	push	r18
- 298:	3f 93       	push	r19
- 29a:	4f 93       	push	r20
- 29c:	5f 93       	push	r21
- 29e:	6f 93       	push	r22
- 2a0:	7f 93       	push	r23
- 2a2:	8f 93       	push	r24
- 2a4:	9f 93       	push	r25
- 2a6:	af 93       	push	r26
- 2a8:	bf 93       	push	r27
- 2aa:	ef 93       	push	r30
- 2ac:	ff 93       	push	r31
- 2ae:	cf 93       	push	r28
- 2b0:	df 93       	push	r29
- 2b2:	cd b7       	in	r28, 0x3d	; 61
- 2b4:	de b7       	in	r29, 0x3e	; 62
- 2b6:	26 97       	sbiw	r28, 0x06	; 6
- 2b8:	de bf       	out	0x3e, r29	; 62
- 2ba:	cd bf       	out	0x3d, r28	; 61
+ 2aa:	1f 92       	push	r1
+ 2ac:	0f 92       	push	r0
+ 2ae:	0f b6       	in	r0, 0x3f	; 63
+ 2b0:	0f 92       	push	r0
+ 2b2:	11 24       	eor	r1, r1
+ 2b4:	2f 93       	push	r18
+ 2b6:	3f 93       	push	r19
+ 2b8:	4f 93       	push	r20
+ 2ba:	5f 93       	push	r21
+ 2bc:	6f 93       	push	r22
+ 2be:	7f 93       	push	r23
+ 2c0:	8f 93       	push	r24
+ 2c2:	9f 93       	push	r25
+ 2c4:	af 93       	push	r26
+ 2c6:	bf 93       	push	r27
+ 2c8:	ef 93       	push	r30
+ 2ca:	ff 93       	push	r31
+ 2cc:	cf 93       	push	r28
+ 2ce:	df 93       	push	r29
+ 2d0:	cd b7       	in	r28, 0x3d	; 61
+ 2d2:	de b7       	in	r29, 0x3e	; 62
+ 2d4:	28 97       	sbiw	r28, 0x08	; 8
+ 2d6:	de bf       	out	0x3e, r29	; 62
+ 2d8:	cd bf       	out	0x3d, r28	; 61
     static uint8_t number_of_overflows = 0;
-    static uint8_t tens = 0;        // Tenths of a second
-    static uint8_t secs = 0;        // Seconds
-    char lcd_string[2] = "  ";      // String for converting numbers by itoa()
- 2bc:	80 e2       	ldi	r24, 0x20	; 32
- 2be:	90 e2       	ldi	r25, 0x20	; 32
- 2c0:	9a 83       	std	Y+2, r25	; 0x02
- 2c2:	89 83       	std	Y+1, r24	; 0x01
+    static uint8_t tens = 0;			// Tenths of a second
+    static uint8_t secs = 0;			// Seconds
+	static uint8_t mins = 0;			// Minutes
+    char lcd_string_secs[2] = "  ";     // String for converting numbers by itoa()
+ 2da:	80 e2       	ldi	r24, 0x20	; 32
+ 2dc:	90 e2       	ldi	r25, 0x20	; 32
+ 2de:	9a 83       	std	Y+2, r25	; 0x02
+ 2e0:	89 83       	std	Y+1, r24	; 0x01
+	char lcd_string_mins[2] = "  ";
+ 2e2:	9c 83       	std	Y+4, r25	; 0x04
+ 2e4:	8b 83       	std	Y+3, r24	; 0x03
     char lcd_pwr[4] = "  ";
- 2c4:	9c 83       	std	Y+4, r25	; 0x04
- 2c6:	8b 83       	std	Y+3, r24	; 0x03
- 2c8:	1e 82       	std	Y+6, r1	; 0x06
- 2ca:	1d 82       	std	Y+5, r1	; 0x05
+ 2e6:	9e 83       	std	Y+6, r25	; 0x06
+ 2e8:	8d 83       	std	Y+5, r24	; 0x05
+ 2ea:	18 86       	std	Y+8, r1	; 0x08
+ 2ec:	1f 82       	std	Y+7, r1	; 0x07
     uint16_t pwr;
     
     number_of_overflows++;
- 2cc:	80 91 3c 01 	lds	r24, 0x013C	; 0x80013c <number_of_overflows.1951>
- 2d0:	8f 5f       	subi	r24, 0xFF	; 255
+ 2ee:	80 91 49 01 	lds	r24, 0x0149	; 0x800149 <number_of_overflows.2078>
+ 2f2:	8f 5f       	subi	r24, 0xFF	; 255
     if (number_of_overflows >= 6)
- 2d2:	86 30       	cpi	r24, 0x06	; 6
- 2d4:	18 f4       	brcc	.+6      	; 0x2dc <__vector_9+0x50>
-    static uint8_t secs = 0;        // Seconds
-    char lcd_string[2] = "  ";      // String for converting numbers by itoa()
+ 2f4:	86 30       	cpi	r24, 0x06	; 6
+ 2f6:	18 f4       	brcc	.+6      	; 0x2fe <__vector_9+0x54>
+    char lcd_string_secs[2] = "  ";     // String for converting numbers by itoa()
+	char lcd_string_mins[2] = "  ";
     char lcd_pwr[4] = "  ";
     uint16_t pwr;
     
     number_of_overflows++;
- 2d6:	80 93 3c 01 	sts	0x013C, r24	; 0x80013c <number_of_overflows.1951>
- 2da:	4a c0       	rjmp	.+148    	; 0x370 <__vector_9+0xe4>
+ 2f8:	80 93 49 01 	sts	0x0149, r24	; 0x800149 <number_of_overflows.2078>
+ 2fc:	6c c0       	rjmp	.+216    	; 0x3d6 <__vector_9+0x12c>
     if (number_of_overflows >= 6)
     {
         // Do this every 6 x 16 ms = 100 ms
         number_of_overflows = 0;
- 2dc:	10 92 3c 01 	sts	0x013C, r1	; 0x80013c <number_of_overflows.1951>
+ 2fe:	10 92 49 01 	sts	0x0149, r1	; 0x800149 <number_of_overflows.2078>
 
-        // WRITE YOUR CODE HERE
         tens++;
- 2e0:	80 91 3b 01 	lds	r24, 0x013B	; 0x80013b <tens.1952>
- 2e4:	8f 5f       	subi	r24, 0xFF	; 255
+ 302:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <tens.2079>
+ 306:	8f 5f       	subi	r24, 0xFF	; 255
         if (tens >= 10) {
- 2e6:	8a 30       	cpi	r24, 0x0A	; 10
- 2e8:	18 f4       	brcc	.+6      	; 0x2f0 <__vector_9+0x64>
+ 308:	8a 30       	cpi	r24, 0x0A	; 10
+ 30a:	18 f4       	brcc	.+6      	; 0x312 <__vector_9+0x68>
+    if (number_of_overflows >= 6)
     {
         // Do this every 6 x 16 ms = 100 ms
         number_of_overflows = 0;
 
-        // WRITE YOUR CODE HERE
         tens++;
- 2ea:	80 93 3b 01 	sts	0x013B, r24	; 0x80013b <tens.1952>
- 2ee:	1f c0       	rjmp	.+62     	; 0x32e <__vector_9+0xa2>
+ 30c:	80 93 48 01 	sts	0x0148, r24	; 0x800148 <tens.2079>
+ 310:	29 c0       	rjmp	.+82     	; 0x364 <__vector_9+0xba>
         if (tens >= 10) {
            tens = 0;
- 2f0:	10 92 3b 01 	sts	0x013B, r1	; 0x80013b <tens.1952>
-           secs++;
- 2f4:	80 91 3a 01 	lds	r24, 0x013A	; 0x80013a <secs.1953>
- 2f8:	8f 5f       	subi	r24, 0xFF	; 255
+ 312:	10 92 48 01 	sts	0x0148, r1	; 0x800148 <tens.2079>
+           secs++;		   
+ 316:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <secs.2080>
+ 31a:	8f 5f       	subi	r24, 0xFF	; 255
            if (secs >= 60) {
- 2fa:	8c 33       	cpi	r24, 0x3C	; 60
- 2fc:	18 f4       	brcc	.+6      	; 0x304 <__vector_9+0x78>
+ 31c:	8c 33       	cpi	r24, 0x3C	; 60
+ 31e:	18 f4       	brcc	.+6      	; 0x326 <__vector_9+0x7c>
+        number_of_overflows = 0;
 
-        // WRITE YOUR CODE HERE
         tens++;
         if (tens >= 10) {
            tens = 0;
-           secs++;
- 2fe:	80 93 3a 01 	sts	0x013A, r24	; 0x80013a <secs.1953>
- 302:	02 c0       	rjmp	.+4      	; 0x308 <__vector_9+0x7c>
+           secs++;		   
+ 320:	80 93 47 01 	sts	0x0147, r24	; 0x800147 <secs.2080>
+ 324:	0c c0       	rjmp	.+24     	; 0x33e <__vector_9+0x94>
            if (secs >= 60) {
                secs = 0;
- 304:	10 92 3a 01 	sts	0x013A, r1	; 0x80013a <secs.1953>
+ 326:	10 92 47 01 	sts	0x0147, r1	; 0x800147 <secs.2080>
+			   mins++; 
+ 32a:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <mins.2081>
+ 32e:	8f 5f       	subi	r24, 0xFF	; 255
+			   if (mins >= 60) {
+ 330:	8c 33       	cpi	r24, 0x3C	; 60
+ 332:	18 f4       	brcc	.+6      	; 0x33a <__vector_9+0x90>
+        if (tens >= 10) {
+           tens = 0;
+           secs++;		   
+           if (secs >= 60) {
+               secs = 0;
+			   mins++; 
+ 334:	80 93 46 01 	sts	0x0146, r24	; 0x800146 <mins.2081>
+ 338:	02 c0       	rjmp	.+4      	; 0x33e <__vector_9+0x94>
+			   if (mins >= 60) {
+				   mins = 0;
+ 33a:	10 92 46 01 	sts	0x0146, r1	; 0x800146 <mins.2081>
+			   }
            } 
         pwr = secs * secs;          //powering seconds
- 308:	80 91 3a 01 	lds	r24, 0x013A	; 0x80013a <secs.1953>
+ 33e:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <secs.2080>
     } else if (__radix < 2 || __radix > 36) {
 	*__s = 0;
 	return __s;
     } else {
 	extern char *__itoa_ncheck (int, char *, unsigned char);
 	return __itoa_ncheck (__val, __s, __radix);
- 30c:	4a e0       	ldi	r20, 0x0A	; 10
- 30e:	be 01       	movw	r22, r28
- 310:	6d 5f       	subi	r22, 0xFD	; 253
- 312:	7f 4f       	sbci	r23, 0xFF	; 255
- 314:	88 9f       	mul	r24, r24
- 316:	c0 01       	movw	r24, r0
- 318:	11 24       	eor	r1, r1
- 31a:	0e 94 0f 02 	call	0x41e	; 0x41e <__itoa_ncheck>
+ 342:	4a e0       	ldi	r20, 0x0A	; 10
+ 344:	be 01       	movw	r22, r28
+ 346:	6b 5f       	subi	r22, 0xFB	; 251
+ 348:	7f 4f       	sbci	r23, 0xFF	; 255
+ 34a:	88 9f       	mul	r24, r24
+ 34c:	c0 01       	movw	r24, r0
+ 34e:	11 24       	eor	r1, r1
+ 350:	0e 94 4c 02 	call	0x498	; 0x498 <__itoa_ncheck>
         itoa(pwr, lcd_pwr, 10);     //number to string
         lcd_gotoxy(11, 0);
- 31e:	60 e0       	ldi	r22, 0x00	; 0
- 320:	8b e0       	ldi	r24, 0x0B	; 11
- 322:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+ 354:	60 e0       	ldi	r22, 0x00	; 0
+ 356:	8b e0       	ldi	r24, 0x0B	; 11
+ 358:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
         lcd_puts(lcd_pwr);          //printing power of seconds
- 326:	ce 01       	movw	r24, r28
- 328:	03 96       	adiw	r24, 0x03	; 3
- 32a:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
+ 35c:	ce 01       	movw	r24, r28
+ 35e:	05 96       	adiw	r24, 0x05	; 5
+ 360:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
         }
         
-        lcd_gotoxy(6, 0);
- 32e:	60 e0       	ldi	r22, 0x00	; 0
- 330:	86 e0       	ldi	r24, 0x06	; 6
- 332:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+        lcd_gotoxy(7, 0);
+ 364:	60 e0       	ldi	r22, 0x00	; 0
+ 366:	87 e0       	ldi	r24, 0x07	; 7
+ 368:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
         lcd_putc(tens + '0');
- 336:	80 91 3b 01 	lds	r24, 0x013B	; 0x80013b <tens.1952>
- 33a:	80 5d       	subi	r24, 0xD0	; 208
- 33c:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
- 340:	80 91 3a 01 	lds	r24, 0x013A	; 0x80013a <secs.1953>
- 344:	4a e0       	ldi	r20, 0x0A	; 10
- 346:	be 01       	movw	r22, r28
- 348:	6f 5f       	subi	r22, 0xFF	; 255
- 34a:	7f 4f       	sbci	r23, 0xFF	; 255
- 34c:	90 e0       	ldi	r25, 0x00	; 0
- 34e:	0e 94 0f 02 	call	0x41e	; 0x41e <__itoa_ncheck>
-        itoa(secs, lcd_string, 10);
-        lcd_gotoxy(3, 0);
- 352:	60 e0       	ldi	r22, 0x00	; 0
- 354:	83 e0       	ldi	r24, 0x03	; 3
- 356:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+ 36c:	80 91 48 01 	lds	r24, 0x0148	; 0x800148 <tens.2079>
+ 370:	80 5d       	subi	r24, 0xD0	; 208
+ 372:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+ 376:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <secs.2080>
+ 37a:	4a e0       	ldi	r20, 0x0A	; 10
+ 37c:	be 01       	movw	r22, r28
+ 37e:	6f 5f       	subi	r22, 0xFF	; 255
+ 380:	7f 4f       	sbci	r23, 0xFF	; 255
+ 382:	90 e0       	ldi	r25, 0x00	; 0
+ 384:	0e 94 4c 02 	call	0x498	; 0x498 <__itoa_ncheck>
+        itoa(secs, lcd_string_secs, 10);
+        lcd_gotoxy(4, 0);
+ 388:	60 e0       	ldi	r22, 0x00	; 0
+ 38a:	84 e0       	ldi	r24, 0x04	; 4
+ 38c:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
         if (secs < 10) {
- 35a:	80 91 3a 01 	lds	r24, 0x013A	; 0x80013a <secs.1953>
- 35e:	8a 30       	cpi	r24, 0x0A	; 10
- 360:	18 f4       	brcc	.+6      	; 0x368 <__vector_9+0xdc>
+ 390:	80 91 47 01 	lds	r24, 0x0147	; 0x800147 <secs.2080>
+ 394:	8a 30       	cpi	r24, 0x0A	; 10
+ 396:	18 f4       	brcc	.+6      	; 0x39e <__vector_9+0xf4>
             lcd_putc('0');
- 362:	80 e3       	ldi	r24, 0x30	; 48
- 364:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+ 398:	80 e3       	ldi	r24, 0x30	; 48
+ 39a:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
         }
-        lcd_puts(lcd_string);       
- 368:	ce 01       	movw	r24, r28
- 36a:	01 96       	adiw	r24, 0x01	; 1
- 36c:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
+        lcd_puts(lcd_string_secs);
+ 39e:	ce 01       	movw	r24, r28
+ 3a0:	01 96       	adiw	r24, 0x01	; 1
+ 3a2:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
+ 3a6:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <mins.2081>
+ 3aa:	4a e0       	ldi	r20, 0x0A	; 10
+ 3ac:	be 01       	movw	r22, r28
+ 3ae:	6d 5f       	subi	r22, 0xFD	; 253
+ 3b0:	7f 4f       	sbci	r23, 0xFF	; 255
+ 3b2:	90 e0       	ldi	r25, 0x00	; 0
+ 3b4:	0e 94 4c 02 	call	0x498	; 0x498 <__itoa_ncheck>
+		
+		itoa(mins, lcd_string_mins, 10);
+		lcd_gotoxy(1, 0);
+ 3b8:	60 e0       	ldi	r22, 0x00	; 0
+ 3ba:	81 e0       	ldi	r24, 0x01	; 1
+ 3bc:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+		if (mins < 10) {
+ 3c0:	80 91 46 01 	lds	r24, 0x0146	; 0x800146 <mins.2081>
+ 3c4:	8a 30       	cpi	r24, 0x0A	; 10
+ 3c6:	18 f4       	brcc	.+6      	; 0x3ce <__vector_9+0x124>
+			lcd_putc('0');
+ 3c8:	80 e3       	ldi	r24, 0x30	; 48
+ 3ca:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+		}
+		lcd_puts(lcd_string_mins);
+ 3ce:	ce 01       	movw	r24, r28
+ 3d0:	03 96       	adiw	r24, 0x03	; 3
+ 3d2:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
         
     }
     // Else do nothing and exit the ISR
 }
- 370:	26 96       	adiw	r28, 0x06	; 6
- 372:	0f b6       	in	r0, 0x3f	; 63
- 374:	f8 94       	cli
- 376:	de bf       	out	0x3e, r29	; 62
- 378:	0f be       	out	0x3f, r0	; 63
- 37a:	cd bf       	out	0x3d, r28	; 61
- 37c:	df 91       	pop	r29
- 37e:	cf 91       	pop	r28
- 380:	ff 91       	pop	r31
- 382:	ef 91       	pop	r30
- 384:	bf 91       	pop	r27
- 386:	af 91       	pop	r26
- 388:	9f 91       	pop	r25
- 38a:	8f 91       	pop	r24
- 38c:	7f 91       	pop	r23
- 38e:	6f 91       	pop	r22
- 390:	5f 91       	pop	r21
- 392:	4f 91       	pop	r20
- 394:	3f 91       	pop	r19
- 396:	2f 91       	pop	r18
- 398:	0f 90       	pop	r0
- 39a:	0f be       	out	0x3f, r0	; 63
- 39c:	0f 90       	pop	r0
- 39e:	1f 90       	pop	r1
- 3a0:	18 95       	reti
+ 3d6:	28 96       	adiw	r28, 0x08	; 8
+ 3d8:	0f b6       	in	r0, 0x3f	; 63
+ 3da:	f8 94       	cli
+ 3dc:	de bf       	out	0x3e, r29	; 62
+ 3de:	0f be       	out	0x3f, r0	; 63
+ 3e0:	cd bf       	out	0x3d, r28	; 61
+ 3e2:	df 91       	pop	r29
+ 3e4:	cf 91       	pop	r28
+ 3e6:	ff 91       	pop	r31
+ 3e8:	ef 91       	pop	r30
+ 3ea:	bf 91       	pop	r27
+ 3ec:	af 91       	pop	r26
+ 3ee:	9f 91       	pop	r25
+ 3f0:	8f 91       	pop	r24
+ 3f2:	7f 91       	pop	r23
+ 3f4:	6f 91       	pop	r22
+ 3f6:	5f 91       	pop	r21
+ 3f8:	4f 91       	pop	r20
+ 3fa:	3f 91       	pop	r19
+ 3fc:	2f 91       	pop	r18
+ 3fe:	0f 90       	pop	r0
+ 400:	0f be       	out	0x3f, r0	; 63
+ 402:	0f 90       	pop	r0
+ 404:	1f 90       	pop	r1
+ 406:	18 95       	reti
 
-000003a2 <__vector_16>:
+00000408 <__vector_16>:
 
 ISR(TIMER0_OVF_vect)
-{
- 3a2:	1f 92       	push	r1
- 3a4:	0f 92       	push	r0
- 3a6:	0f b6       	in	r0, 0x3f	; 63
- 3a8:	0f 92       	push	r0
- 3aa:	11 24       	eor	r1, r1
- 3ac:	2f 93       	push	r18
- 3ae:	3f 93       	push	r19
- 3b0:	4f 93       	push	r20
- 3b2:	5f 93       	push	r21
- 3b4:	6f 93       	push	r22
- 3b6:	7f 93       	push	r23
- 3b8:	8f 93       	push	r24
- 3ba:	9f 93       	push	r25
- 3bc:	af 93       	push	r26
- 3be:	bf 93       	push	r27
- 3c0:	ef 93       	push	r30
- 3c2:	ff 93       	push	r31
-    static uint8_t number_of_overflows_pb = 0;
-    static uint8_t t_pb = 0;        // Tenths of a second for progress bar
-    static uint8_t s_pb = 0;        // Seconds for progress bar  
-    
-    t_pb++; 
- 3c4:	80 91 39 01 	lds	r24, 0x0139	; 0x800139 <t_pb.1963>
- 3c8:	8f 5f       	subi	r24, 0xFF	; 255
-    if (t_pb >= 10) {
- 3ca:	8a 30       	cpi	r24, 0x0A	; 10
- 3cc:	18 f4       	brcc	.+6      	; 0x3d4 <__vector_16+0x32>
-{
-    static uint8_t number_of_overflows_pb = 0;
-    static uint8_t t_pb = 0;        // Tenths of a second for progress bar
-    static uint8_t s_pb = 0;        // Seconds for progress bar  
-    
-    t_pb++; 
- 3ce:	80 93 39 01 	sts	0x0139, r24	; 0x800139 <t_pb.1963>
- 3d2:	14 c0       	rjmp	.+40     	; 0x3fc <__vector_16+0x5a>
-    if (t_pb >= 10) {
-        t_pb = 0;
- 3d4:	10 92 39 01 	sts	0x0139, r1	; 0x800139 <t_pb.1963>
-        s_pb++;
- 3d8:	80 91 38 01 	lds	r24, 0x0138	; 0x800138 <__data_end>
- 3dc:	8f 5f       	subi	r24, 0xFF	; 255
-        if (s_pb >= 10) {
- 3de:	8a 30       	cpi	r24, 0x0A	; 10
- 3e0:	18 f4       	brcc	.+6      	; 0x3e8 <__vector_16+0x46>
-    static uint8_t s_pb = 0;        // Seconds for progress bar  
-    
-    t_pb++; 
-    if (t_pb >= 10) {
-        t_pb = 0;
-        s_pb++;
- 3e2:	80 93 38 01 	sts	0x0138, r24	; 0x800138 <__data_end>
- 3e6:	02 c0       	rjmp	.+4      	; 0x3ec <__vector_16+0x4a>
-        if (s_pb >= 10) {
-            s_pb = 0;
- 3e8:	10 92 38 01 	sts	0x0138, r1	; 0x800138 <__data_end>
-        }
-        lcd_gotoxy(s_pb, 1);
- 3ec:	61 e0       	ldi	r22, 0x01	; 1
- 3ee:	80 91 38 01 	lds	r24, 0x0138	; 0x800138 <__data_end>
- 3f2:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
-        lcd_putc('a');
- 3f6:	81 e6       	ldi	r24, 0x61	; 97
- 3f8:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
-        
-    }
-    // Else do nothing and exit the ISR
- 3fc:	ff 91       	pop	r31
- 3fe:	ef 91       	pop	r30
- 400:	bf 91       	pop	r27
- 402:	af 91       	pop	r26
- 404:	9f 91       	pop	r25
- 406:	8f 91       	pop	r24
- 408:	7f 91       	pop	r23
- 40a:	6f 91       	pop	r22
- 40c:	5f 91       	pop	r21
- 40e:	4f 91       	pop	r20
- 410:	3f 91       	pop	r19
- 412:	2f 91       	pop	r18
- 414:	0f 90       	pop	r0
- 416:	0f be       	out	0x3f, r0	; 63
- 418:	0f 90       	pop	r0
- 41a:	1f 90       	pop	r1
- 41c:	18 95       	reti
+{	
+ 408:	1f 92       	push	r1
+ 40a:	0f 92       	push	r0
+ 40c:	0f b6       	in	r0, 0x3f	; 63
+ 40e:	0f 92       	push	r0
+ 410:	11 24       	eor	r1, r1
+ 412:	2f 93       	push	r18
+ 414:	3f 93       	push	r19
+ 416:	4f 93       	push	r20
+ 418:	5f 93       	push	r21
+ 41a:	6f 93       	push	r22
+ 41c:	7f 93       	push	r23
+ 41e:	8f 93       	push	r24
+ 420:	9f 93       	push	r25
+ 422:	af 93       	push	r26
+ 424:	bf 93       	push	r27
+ 426:	ef 93       	push	r30
+ 428:	ff 93       	push	r31
+	static uint8_t tnt = 0;
+	static uint8_t col = 0;
+	lcd_gotoxy(tnt + 1, 1);
+ 42a:	80 91 45 01 	lds	r24, 0x0145	; 0x800145 <tnt.2091>
+ 42e:	61 e0       	ldi	r22, 0x01	; 1
+ 430:	8f 5f       	subi	r24, 0xFF	; 255
+ 432:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+	lcd_putc(col);
+ 436:	80 91 44 01 	lds	r24, 0x0144	; 0x800144 <__data_end>
+ 43a:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_putc>
+	col++;
+ 43e:	80 91 44 01 	lds	r24, 0x0144	; 0x800144 <__data_end>
+ 442:	8f 5f       	subi	r24, 0xFF	; 255
+	if(col == 6) {
+ 444:	86 30       	cpi	r24, 0x06	; 6
+ 446:	19 f0       	breq	.+6      	; 0x44e <__vector_16+0x46>
+{	
+	static uint8_t tnt = 0;
+	static uint8_t col = 0;
+	lcd_gotoxy(tnt + 1, 1);
+	lcd_putc(col);
+	col++;
+ 448:	80 93 44 01 	sts	0x0144, r24	; 0x800144 <__data_end>
+ 44c:	14 c0       	rjmp	.+40     	; 0x476 <__vector_16+0x6e>
+	if(col == 6) {
+		col = 0;
+ 44e:	10 92 44 01 	sts	0x0144, r1	; 0x800144 <__data_end>
+		tnt++;
+ 452:	80 91 45 01 	lds	r24, 0x0145	; 0x800145 <tnt.2091>
+ 456:	8f 5f       	subi	r24, 0xFF	; 255
+		if (tnt == 10) {
+ 458:	8a 30       	cpi	r24, 0x0A	; 10
+ 45a:	19 f0       	breq	.+6      	; 0x462 <__vector_16+0x5a>
+	lcd_gotoxy(tnt + 1, 1);
+	lcd_putc(col);
+	col++;
+	if(col == 6) {
+		col = 0;
+		tnt++;
+ 45c:	80 93 45 01 	sts	0x0145, r24	; 0x800145 <tnt.2091>
+ 460:	0a c0       	rjmp	.+20     	; 0x476 <__vector_16+0x6e>
+		if (tnt == 10) {
+			tnt = 0;
+ 462:	10 92 45 01 	sts	0x0145, r1	; 0x800145 <tnt.2091>
+			lcd_gotoxy(1, 1);
+ 466:	61 e0       	ldi	r22, 0x01	; 1
+ 468:	81 e0       	ldi	r24, 0x01	; 1
+ 46a:	0e 94 96 00 	call	0x12c	; 0x12c <lcd_gotoxy>
+			lcd_puts("          ");
+ 46e:	88 e3       	ldi	r24, 0x38	; 56
+ 470:	91 e0       	ldi	r25, 0x01	; 1
+ 472:	0e 94 a8 00 	call	0x150	; 0x150 <lcd_puts>
+		}
+	}
 
-0000041e <__itoa_ncheck>:
- 41e:	bb 27       	eor	r27, r27
- 420:	4a 30       	cpi	r20, 0x0A	; 10
- 422:	31 f4       	brne	.+12     	; 0x430 <__itoa_ncheck+0x12>
- 424:	99 23       	and	r25, r25
- 426:	22 f4       	brpl	.+8      	; 0x430 <__itoa_ncheck+0x12>
- 428:	bd e2       	ldi	r27, 0x2D	; 45
- 42a:	90 95       	com	r25
- 42c:	81 95       	neg	r24
- 42e:	9f 4f       	sbci	r25, 0xFF	; 255
- 430:	0c 94 1b 02 	jmp	0x436	; 0x436 <__utoa_common>
+// Else do nothing and exit the ISR
+ 476:	ff 91       	pop	r31
+ 478:	ef 91       	pop	r30
+ 47a:	bf 91       	pop	r27
+ 47c:	af 91       	pop	r26
+ 47e:	9f 91       	pop	r25
+ 480:	8f 91       	pop	r24
+ 482:	7f 91       	pop	r23
+ 484:	6f 91       	pop	r22
+ 486:	5f 91       	pop	r21
+ 488:	4f 91       	pop	r20
+ 48a:	3f 91       	pop	r19
+ 48c:	2f 91       	pop	r18
+ 48e:	0f 90       	pop	r0
+ 490:	0f be       	out	0x3f, r0	; 63
+ 492:	0f 90       	pop	r0
+ 494:	1f 90       	pop	r1
+ 496:	18 95       	reti
 
-00000434 <__utoa_ncheck>:
- 434:	bb 27       	eor	r27, r27
+00000498 <__itoa_ncheck>:
+ 498:	bb 27       	eor	r27, r27
+ 49a:	4a 30       	cpi	r20, 0x0A	; 10
+ 49c:	31 f4       	brne	.+12     	; 0x4aa <__itoa_ncheck+0x12>
+ 49e:	99 23       	and	r25, r25
+ 4a0:	22 f4       	brpl	.+8      	; 0x4aa <__itoa_ncheck+0x12>
+ 4a2:	bd e2       	ldi	r27, 0x2D	; 45
+ 4a4:	90 95       	com	r25
+ 4a6:	81 95       	neg	r24
+ 4a8:	9f 4f       	sbci	r25, 0xFF	; 255
+ 4aa:	0c 94 58 02 	jmp	0x4b0	; 0x4b0 <__utoa_common>
 
-00000436 <__utoa_common>:
- 436:	fb 01       	movw	r30, r22
- 438:	55 27       	eor	r21, r21
- 43a:	aa 27       	eor	r26, r26
- 43c:	88 0f       	add	r24, r24
- 43e:	99 1f       	adc	r25, r25
- 440:	aa 1f       	adc	r26, r26
- 442:	a4 17       	cp	r26, r20
- 444:	10 f0       	brcs	.+4      	; 0x44a <__utoa_common+0x14>
- 446:	a4 1b       	sub	r26, r20
- 448:	83 95       	inc	r24
- 44a:	50 51       	subi	r21, 0x10	; 16
- 44c:	b9 f7       	brne	.-18     	; 0x43c <__utoa_common+0x6>
- 44e:	a0 5d       	subi	r26, 0xD0	; 208
- 450:	aa 33       	cpi	r26, 0x3A	; 58
- 452:	08 f0       	brcs	.+2      	; 0x456 <__utoa_common+0x20>
- 454:	a9 5d       	subi	r26, 0xD9	; 217
- 456:	a1 93       	st	Z+, r26
- 458:	00 97       	sbiw	r24, 0x00	; 0
- 45a:	79 f7       	brne	.-34     	; 0x43a <__utoa_common+0x4>
- 45c:	b1 11       	cpse	r27, r1
- 45e:	b1 93       	st	Z+, r27
- 460:	11 92       	st	Z+, r1
- 462:	cb 01       	movw	r24, r22
- 464:	0c 94 34 02 	jmp	0x468	; 0x468 <strrev>
+000004ae <__utoa_ncheck>:
+ 4ae:	bb 27       	eor	r27, r27
 
-00000468 <strrev>:
- 468:	dc 01       	movw	r26, r24
- 46a:	fc 01       	movw	r30, r24
- 46c:	67 2f       	mov	r22, r23
- 46e:	71 91       	ld	r23, Z+
- 470:	77 23       	and	r23, r23
- 472:	e1 f7       	brne	.-8      	; 0x46c <strrev+0x4>
- 474:	32 97       	sbiw	r30, 0x02	; 2
- 476:	04 c0       	rjmp	.+8      	; 0x480 <strrev+0x18>
- 478:	7c 91       	ld	r23, X
- 47a:	6d 93       	st	X+, r22
- 47c:	70 83       	st	Z, r23
- 47e:	62 91       	ld	r22, -Z
- 480:	ae 17       	cp	r26, r30
- 482:	bf 07       	cpc	r27, r31
- 484:	c8 f3       	brcs	.-14     	; 0x478 <strrev+0x10>
- 486:	08 95       	ret
+000004b0 <__utoa_common>:
+ 4b0:	fb 01       	movw	r30, r22
+ 4b2:	55 27       	eor	r21, r21
+ 4b4:	aa 27       	eor	r26, r26
+ 4b6:	88 0f       	add	r24, r24
+ 4b8:	99 1f       	adc	r25, r25
+ 4ba:	aa 1f       	adc	r26, r26
+ 4bc:	a4 17       	cp	r26, r20
+ 4be:	10 f0       	brcs	.+4      	; 0x4c4 <__utoa_common+0x14>
+ 4c0:	a4 1b       	sub	r26, r20
+ 4c2:	83 95       	inc	r24
+ 4c4:	50 51       	subi	r21, 0x10	; 16
+ 4c6:	b9 f7       	brne	.-18     	; 0x4b6 <__utoa_common+0x6>
+ 4c8:	a0 5d       	subi	r26, 0xD0	; 208
+ 4ca:	aa 33       	cpi	r26, 0x3A	; 58
+ 4cc:	08 f0       	brcs	.+2      	; 0x4d0 <__utoa_common+0x20>
+ 4ce:	a9 5d       	subi	r26, 0xD9	; 217
+ 4d0:	a1 93       	st	Z+, r26
+ 4d2:	00 97       	sbiw	r24, 0x00	; 0
+ 4d4:	79 f7       	brne	.-34     	; 0x4b4 <__utoa_common+0x4>
+ 4d6:	b1 11       	cpse	r27, r1
+ 4d8:	b1 93       	st	Z+, r27
+ 4da:	11 92       	st	Z+, r1
+ 4dc:	cb 01       	movw	r24, r22
+ 4de:	0c 94 71 02 	jmp	0x4e2	; 0x4e2 <strrev>
 
-00000488 <_exit>:
- 488:	f8 94       	cli
+000004e2 <strrev>:
+ 4e2:	dc 01       	movw	r26, r24
+ 4e4:	fc 01       	movw	r30, r24
+ 4e6:	67 2f       	mov	r22, r23
+ 4e8:	71 91       	ld	r23, Z+
+ 4ea:	77 23       	and	r23, r23
+ 4ec:	e1 f7       	brne	.-8      	; 0x4e6 <strrev+0x4>
+ 4ee:	32 97       	sbiw	r30, 0x02	; 2
+ 4f0:	04 c0       	rjmp	.+8      	; 0x4fa <strrev+0x18>
+ 4f2:	7c 91       	ld	r23, X
+ 4f4:	6d 93       	st	X+, r22
+ 4f6:	70 83       	st	Z, r23
+ 4f8:	62 91       	ld	r22, -Z
+ 4fa:	ae 17       	cp	r26, r30
+ 4fc:	bf 07       	cpc	r27, r31
+ 4fe:	c8 f3       	brcs	.-14     	; 0x4f2 <strrev+0x10>
+ 500:	08 95       	ret
 
-0000048a <__stop_program>:
- 48a:	ff cf       	rjmp	.-2      	; 0x48a <__stop_program>
+00000502 <_exit>:
+ 502:	f8 94       	cli
+
+00000504 <__stop_program>:
+ 504:	ff cf       	rjmp	.-2      	; 0x504 <__stop_program>
