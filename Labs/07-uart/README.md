@@ -27,14 +27,25 @@ Link to this file in your GitHub repository:
  **********************************************************************/
 ISR(ADC_vect)
 {
+   // WRITE YOUR CODE HERE
     uint16_t value = 0;
     char lcd_string[4] = "0000";
-
-    value = ADC;                  // Copy ADC result to 16-bit variable
-    itoa(value, lcd_string, 10);  // Convert decimal value to string
-
-    // WRITE YOUR CODE HERE
-
+    char lcd_stringx[4] = "0000";
+    
+    value = ADC;
+    itoa(value, lcd_string, 10);
+    lcd_gotoxy(8, 0);
+    lcd_puts("    ");
+    lcd_gotoxy(8, 0);
+    lcd_puts(lcd_string);
+    uart_puts(lcd_string);
+    
+    itoa(value, lcd_stringx, 16);
+    lcd_gotoxy(13, 0);
+    lcd_puts(lcd_stringx);
+    uart_puts("   ");
+    uart_puts(lcd_stringx);
+    uart_puts("\r\n");
 }
 ```
 
@@ -43,7 +54,7 @@ ISR(ADC_vect)
 
 1. (Hand-drawn) picture of UART signal when transmitting three character data `De2` in 4800 7O2 mode (7 data bits, odd parity, 2 stop bits, 4800&nbsp;Bd).
 
-   ![your figure]()
+   ![UART signal](images/TimingDiagram.png)
 
 2. Flowchart figure for function `get_parity(uint8_t data, uint8_t type)` which calculates a parity bit of input 8-bit `data` according to parameter `type`. The image can be drawn on a computer or by hand. Use clear descriptions of the individual steps of the algorithms.
 

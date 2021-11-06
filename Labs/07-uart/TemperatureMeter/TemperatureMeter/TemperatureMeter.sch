@@ -1,0 +1,369 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_Module:Arduino_UNO_R3 A1
+U 1 1 6183F586
+P 4200 3600
+F 0 "A1" H 4200 4781 50  0000 C CNN
+F 1 "Arduino_UNO_R3" H 4200 4690 50  0000 C CNN
+F 2 "Module:Arduino_UNO_R3" H 4200 3600 50  0001 C CIN
+F 3 "https://www.arduino.cc/en/Main/arduinoBoardUno" H 4200 3600 50  0001 C CNN
+	1    4200 3600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR011
+U 1 1 618403A2
+P 4200 4850
+F 0 "#PWR011" H 4200 4600 50  0001 C CNN
+F 1 "GND" H 4205 4677 50  0000 C CNN
+F 2 "" H 4200 4850 50  0001 C CNN
+F 3 "" H 4200 4850 50  0001 C CNN
+	1    4200 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 4700 4100 4750
+Wire Wire Line
+	4100 4750 4200 4750
+Wire Wire Line
+	4300 4750 4300 4700
+Wire Wire Line
+	4200 4700 4200 4750
+Connection ~ 4200 4750
+Wire Wire Line
+	4200 4750 4300 4750
+Wire Wire Line
+	4200 4750 4200 4850
+Wire Wire Line
+	4400 2600 4400 2400
+$Comp
+L Sensor_Temperature:TC1047AxNB U1
+U 1 1 61842151
+P 6000 3900
+F 0 "U1" H 5671 3946 50  0000 R CNN
+F 1 "TC1046" H 5671 3855 50  0000 R CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6000 3500 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21498D.pdf" H 5850 4150 50  0001 C CNN
+	1    6000 3900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:LED D1
+U 1 1 61843297
+P 2900 4100
+F 0 "D1" H 2893 4317 50  0000 C CNN
+F 1 "LED" H 2893 4226 50  0000 C CNN
+F 2 "" H 2900 4100 50  0001 C CNN
+F 3 "~" H 2900 4100 50  0001 C CNN
+	1    2900 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Switch:SW_Push SW1
+U 1 1 61843ADD
+P 2550 4000
+F 0 "SW1" H 2550 4285 50  0000 C CNN
+F 1 "SW_Push" H 2550 4194 50  0000 C CNN
+F 2 "" H 2550 4200 50  0001 C CNN
+F 3 "~" H 2550 4200 50  0001 C CNN
+	1    2550 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 61843F24
+P 3400 4100
+F 0 "R2" H 3470 4146 50  0000 L CNN
+F 1 "1k" H 3470 4055 50  0000 L CNN
+F 2 "" V 3330 4100 50  0001 C CNN
+F 3 "~" H 3400 4100 50  0001 C CNN
+	1    3400 4100
+	0    1    1    0   
+$EndComp
+$Comp
+L arduino_lcd:DS1 LCD1
+U 1 1 618493AF
+P 5950 2100
+F 0 "LCD1" H 6881 2015 50  0000 L CNN
+F 1 "DS1" H 6881 1924 50  0000 L CNN
+F 2 "" H 5800 1950 50  0001 C CNN
+F 3 "" H 5800 1950 50  0001 C CNN
+	1    5950 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 6184C6EC
+P 2250 4350
+F 0 "#PWR010" H 2250 4100 50  0001 C CNN
+F 1 "GND" H 2255 4177 50  0000 C CNN
+F 2 "" H 2250 4350 50  0001 C CNN
+F 3 "" H 2250 4350 50  0001 C CNN
+	1    2250 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4100 3050 4100
+Wire Wire Line
+	2750 4100 2250 4100
+Wire Wire Line
+	2250 4100 2250 4350
+Wire Wire Line
+	2350 4000 2250 4000
+Wire Wire Line
+	2250 4000 2250 4100
+Connection ~ 2250 4100
+Wire Wire Line
+	6000 4200 6000 4350
+$Comp
+L power:GND #PWR03
+U 1 1 61854135
+P 5200 2850
+F 0 "#PWR03" H 5200 2600 50  0001 C CNN
+F 1 "GND" H 5205 2677 50  0000 C CNN
+F 2 "" H 5200 2850 50  0001 C CNN
+F 3 "" H 5200 2850 50  0001 C CNN
+	1    5200 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 618547A9
+P 5600 2900
+F 0 "#PWR04" H 5600 2650 50  0001 C CNN
+F 1 "GND" H 5605 2727 50  0000 C CNN
+F 2 "" H 5600 2900 50  0001 C CNN
+F 3 "" H 5600 2900 50  0001 C CNN
+	1    5600 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 61855576
+P 7000 3050
+F 0 "R1" V 6800 3050 50  0000 L CNN
+F 1 "4k7" V 6900 3000 50  0000 L CNN
+F 2 "" V 6930 3050 50  0001 C CNN
+F 3 "~" H 7000 3050 50  0001 C CNN
+	1    7000 3050
+	0    1    1    0   
+$EndComp
+Text GLabel 5500 2700 3    50   Input ~ 0
+D2
+Text GLabel 5700 2700 3    50   Input ~ 0
+D3
+Wire Wire Line
+	5600 2550 5600 2900
+NoConn ~ 5800 2550
+NoConn ~ 5900 2550
+NoConn ~ 6000 2550
+NoConn ~ 6100 2550
+Text GLabel 6200 2700 3    50   Input ~ 0
+D4
+Text GLabel 6300 2700 3    50   Input ~ 0
+D5
+Text GLabel 6400 2700 3    50   Input ~ 0
+D6
+Text GLabel 6500 2700 3    50   Input ~ 0
+D7
+Wire Wire Line
+	5500 2700 5500 2550
+Wire Wire Line
+	6200 2700 6200 2550
+Wire Wire Line
+	6300 2700 6300 2550
+Wire Wire Line
+	6400 2700 6400 2550
+Wire Wire Line
+	6500 2700 6500 2550
+Wire Wire Line
+	6600 2550 6600 3050
+Wire Wire Line
+	6600 3050 6750 3050
+Wire Wire Line
+	7150 3050 7450 3050
+Wire Wire Line
+	7750 2850 7750 2750
+Wire Wire Line
+	7750 2750 6700 2750
+Wire Wire Line
+	6700 2750 6700 2550
+$Comp
+L power:GND #PWR07
+U 1 1 6185C4F9
+P 7750 3350
+F 0 "#PWR07" H 7750 3100 50  0001 C CNN
+F 1 "GND" H 7755 3177 50  0000 C CNN
+F 2 "" H 7750 3350 50  0001 C CNN
+F 3 "" H 7750 3350 50  0001 C CNN
+	1    7750 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7750 3350 7750 3250
+Wire Wire Line
+	5200 2550 5200 2850
+Wire Wire Line
+	5700 2700 5700 2550
+$Comp
+L Device:R_POT RV1
+U 1 1 6185EF96
+P 5400 3400
+F 0 "RV1" V 5285 3400 50  0000 C CNN
+F 1 "R_POT" V 5194 3400 50  0000 C CNN
+F 2 "" H 5400 3400 50  0001 C CNN
+F 3 "~" H 5400 3400 50  0001 C CNN
+	1    5400 3400
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR08
+U 1 1 6185FB4E
+P 5600 3500
+F 0 "#PWR08" H 5600 3250 50  0001 C CNN
+F 1 "GND" H 5605 3327 50  0000 C CNN
+F 2 "" H 5600 3500 50  0001 C CNN
+F 3 "" H 5600 3500 50  0001 C CNN
+	1    5600 3500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 2550 5400 3250
+Wire Wire Line
+	5550 3400 5600 3400
+Wire Wire Line
+	5600 3400 5600 3500
+Text GLabel 3500 3700 0    50   Input ~ 0
+D7
+Text GLabel 3500 3600 0    50   Input ~ 0
+D6
+Text GLabel 3500 3500 0    50   Input ~ 0
+D5
+Text GLabel 3500 3400 0    50   Input ~ 0
+D4
+Text GLabel 3500 3300 0    50   Input ~ 0
+D3
+Text GLabel 3500 3200 0    50   Input ~ 0
+D2
+Wire Wire Line
+	3500 3200 3700 3200
+Wire Wire Line
+	3500 3300 3700 3300
+Wire Wire Line
+	3500 3400 3700 3400
+Wire Wire Line
+	3500 3500 3700 3500
+Wire Wire Line
+	3500 3600 3700 3600
+Wire Wire Line
+	3500 3700 3700 3700
+Wire Wire Line
+	3550 4100 3700 4100
+Wire Wire Line
+	3700 4000 2750 4000
+$Comp
+L power:+5V #PWR01
+U 1 1 6186AD3E
+P 4400 2400
+F 0 "#PWR01" H 4400 2250 50  0001 C CNN
+F 1 "+5V" H 4415 2573 50  0000 C CNN
+F 2 "" H 4400 2400 50  0001 C CNN
+F 3 "" H 4400 2400 50  0001 C CNN
+	1    4400 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR05
+U 1 1 6186BE27
+P 4950 3150
+F 0 "#PWR05" H 4950 3000 50  0001 C CNN
+F 1 "+5V" H 4965 3323 50  0000 C CNN
+F 2 "" H 4950 3150 50  0001 C CNN
+F 3 "" H 4950 3150 50  0001 C CNN
+	1    4950 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 3150 4950 3250
+Wire Wire Line
+	4950 3400 5250 3400
+Wire Wire Line
+	5300 3250 4950 3250
+Wire Wire Line
+	5300 2550 5300 3250
+Connection ~ 4950 3250
+Wire Wire Line
+	4950 3250 4950 3400
+$Comp
+L power:+5V #PWR02
+U 1 1 6186DAFE
+P 6750 3000
+F 0 "#PWR02" H 6750 2850 50  0001 C CNN
+F 1 "+5V" H 6765 3173 50  0000 C CNN
+F 2 "" H 6750 3000 50  0001 C CNN
+F 3 "" H 6750 3000 50  0001 C CNN
+	1    6750 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6750 3000 6750 3050
+Connection ~ 6750 3050
+Wire Wire Line
+	6750 3050 6850 3050
+$Comp
+L Transistor_BJT:2SD1047 Q1
+U 1 1 6186F192
+P 7650 3050
+F 0 "Q1" H 7840 3096 50  0000 L CNN
+F 1 "9013" H 7840 3005 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-3PB-3_Vertical" H 7900 2975 50  0001 L CIN
+F 3 "http://www.st.com/resource/en/datasheet/2sd1047.pdf" H 7650 3050 50  0001 L CNN
+	1    7650 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 61870567
+P 4300 2200
+F 0 "#PWR?" H 4300 2050 50  0001 C CNN
+F 1 "+3V3" H 4315 2373 50  0000 C CNN
+F 2 "" H 4300 2200 50  0001 C CNN
+F 3 "" H 4300 2200 50  0001 C CNN
+	1    4300 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR?
+U 1 1 61870E6A
+P 6000 4350
+F 0 "#PWR?" H 6000 4200 50  0001 C CNN
+F 1 "+3V3" H 6015 4523 50  0000 C CNN
+F 2 "" H 6000 4350 50  0001 C CNN
+F 3 "" H 6000 4350 50  0001 C CNN
+	1    6000 4350
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4300 2200 4300 2600
+Wire Wire Line
+	4700 3900 5600 3900
+Wire Wire Line
+	5600 3400 6000 3400
+Wire Wire Line
+	6000 3400 6000 3600
+Connection ~ 5600 3400
+$EndSCHEMATC
