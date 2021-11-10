@@ -78,8 +78,10 @@ ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM
     static uint8_t addr = 7;            // I2C slave address
+    uint8_t temp = 0;                   // temperature
     uint8_t result = 1;                 // ACK result from the bus
     char uart_string[2] = "00"; // String for converting numbers by itoa()
+    char temp_string[8] = "00";
 
     // FSM
     switch (state)
@@ -116,10 +118,16 @@ ISR(TIMER1_OVF_vect)
     // A module connected to the bus was found
     case STATE_ACK:
         // Send info about active I2C slave to UART and move to IDLE
-        uart_puts("Addr:");
+        uart_puts("Addr:");             //address reading
         itoa(addr, uart_string, 16);
         uart_puts(uart_string);
         uart_puts("\r\n");
+        /*twi_start(00);
+        temp = twi_read_ack();
+        itoa(temp, temp_string, 16);
+        uart_puts(temp_string);
+        uart_puts("\r\n");*/
+        
         state = STATE_IDLE;
         break;
 
