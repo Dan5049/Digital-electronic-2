@@ -26,9 +26,13 @@
 
 /* Variables ---------------------------------------------------------*/
 typedef enum {              // FSM declaration
-    STATE_IDLE = 1,
-    STATE_SEND,
-    STATE_ACK
+    //STATE_IDLE = 1,
+    //STATE_SEND,
+    //STATE_ACK
+	STATE_IDLE = 1,
+	STATE_HUMID,
+	STATE_TEMP,
+	STATE_CHECK
 } state_t;
 
 /* Function definitions ----------------------------------------------*/
@@ -76,64 +80,160 @@ int main(void)
  **********************************************************************/
 ISR(TIMER1_OVF_vect)
 {
-    static state_t state = STATE_IDLE;  // Current state of the FSM
-    static uint8_t addr = 7;            // I2C slave address
-    uint8_t temp = 0;                   // temperature
-    uint8_t result = 1;                 // ACK result from the bus
-    char uart_string[2] = "00"; // String for converting numbers by itoa()
-    char temp_string[8] = "00";
+    //static state_t state = STATE_IDLE;  // Current state of the FSM
+    //static uint8_t addr = 7;            // I2C slave address
+    //static uint8_t temp = 0;            // temperature
+    //uint8_t result = 1;                 // ACK result from the bus
+    //char uart_string[2] = "00";			// String for converting numbers by itoa()
+    //char temp_string[2] = "00";
+//
+    //// FSM
+    //switch (state)
+    //{
+    //// Increment I2C slave address
+    //case STATE_IDLE:
+        //addr++;
+        //// If slave address is between 8 and 119 then move to SEND state
+        //if (addr < 120) state = STATE_SEND;
+            //else addr = 7;
+        //break;
+    //
+    //// Transmit I2C slave address and get result
+    //case STATE_SEND:
+        //// I2C address frame:
+        //// +------------------------+------------+
+        //// |      from Master       | from Slave |
+        //// +------------------------+------------+
+        //// | 7  6  5  4  3  2  1  0 |     ACK    |
+        //// |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
+        //// +------------------------+------------+
+        ///*result = twi_start((addr<<1) + TWI_WRITE);
+        //twi_stop();*/
+        ///* Test result from I2C bus. If it is 0 then move to ACK state, 
+         //* otherwise move to IDLE */
+        //if (result == 0) {
+            //state = STATE_ACK;
+        //}
+        //else {
+            //state = STATE_IDLE;
+        //}
+        //break;
+//
+    //// A module connected to the bus was found
+    //case STATE_ACK:
+        //// Send info about active I2C slave to UART and move to IDLE
+        ///*uart_puts("Addr:");             //address reading
+        //itoa(addr, uart_string, 16);
+        //uart_puts(uart_string);
+        //uart_puts("\r\n");*/
+        ////twi_start(00);
+        //temp = twi_read_nack();
+		//twi_stop()
+        //itoa(temp, temp_string, 10);
+        //uart_puts(temp_string);
+        //uart_puts("\r\n");
+        //
+        //state = STATE_IDLE;
+        //break;
+//
+    //// If something unexpected happens then move to IDLE
+    //default:
+        //state = STATE_IDLE;
+        //break;
+    //}
+	
+	/*static uint8_t temp = 0;
+	uint8_t addr = 92;
+	char temp_string[2] = "00";
+	
+	twi_start((addr<<1) + TWI_WRITE);
+	twi_write(2);
+	twi_start((addr<<1) + TWI_WRITE);
+	temp = twi_read_nack();*/
+	
+	static state_t state = STATE_IDLE;  // Current state of the FSM
+	static uint8_t addr = 0x57;  // I2C slave address of DHT12
+	uint8_t value;               // Data obtained from the I2C bus
+	char uart_string[] = "000";  // String for converting numbers by itoa()
+	char humint_string[2] = "00";
+	char humfrc_string[2] = "00";
+	char tempint_string[2] = "00";
+	char temfrc_string[2] = "00";
+	char checksum_string[2] = "00";
 
-    // FSM
-    switch (state)
-    {
-    // Increment I2C slave address
-    case STATE_IDLE:
-        addr++;
-        // If slave address is between 8 and 119 then move to SEND state
-        if (addr < 120) state = STATE_SEND;
-            else addr = 7;
-        break;
-    
-    // Transmit I2C slave address and get result
-    case STATE_SEND:
-        // I2C address frame:
-        // +------------------------+------------+
-        // |      from Master       | from Slave |
-        // +------------------------+------------+
-        // | 7  6  5  4  3  2  1  0 |     ACK    |
-        // |a6 a5 a4 a3 a2 a1 a0 R/W|   result   |
-        // +------------------------+------------+
-        result = twi_start((addr<<1) + TWI_WRITE);
-        twi_stop();
-        /* Test result from I2C bus. If it is 0 then move to ACK state, 
-         * otherwise move to IDLE */
-        if (result == 0) {
-            state = STATE_ACK;
-        }
-        else {
-            state = STATE_IDLE;
-        }
-        break;
+	// FSM
+	switch (state)
+	{
+		// Do nothing
+		case STATE_IDLE:
+		// Move to the next state
+		state = STATE_HUMID;
+		break;
+		
+		// Get humidity
+		case STATE_HUMID:
+		// WRITE YOUR CODE HERE
+		twi_start((addr<<1) + TWI_WRITE);
+		twi_write(0);
+		twi_start((addr<<1) + TWI_WRITE);
+		uint8_t humid_int = twi_read_nack();
+		twi_start((addr<<1) + TWI_WRITE);
+		twi_write(1);
+		twi_start((addr<<1) + TWI_WRITE);
+		uint8_t humid_frc = twi_read_nack();
+		itoa(humid_int, humint_string, 10);
+		itoa(humid_frc, humfrc_string, 10);
+		uart_puts("Humidity: ");
+		uart_puts(humint_string);
+		uart_puts(".");
+		uart_puts(humfrc_string);
+		uart_puts("\r\n");
+		// Move to the next state
+		state = STATE_TEMP;
+		break;
 
-    // A module connected to the bus was found
-    case STATE_ACK:
-        // Send info about active I2C slave to UART and move to IDLE
-        uart_puts("Addr:");             //address reading
-        itoa(addr, uart_string, 16);
-        uart_puts(uart_string);
-        uart_puts("\r\n");
-        /*twi_start(00);
-        temp = twi_read_ack();
-        itoa(temp, temp_string, 16);
-        uart_puts(temp_string);
-        uart_puts("\r\n");*/
-        
-        state = STATE_IDLE;
-        break;
+		// Get temperature
+		case STATE_TEMP:
+		// WRITE YOUR CODE HERE
+		twi_start((addr<<1) + TWI_WRITE);
+		twi_write(2);
+		twi_start((addr<<1) + TWI_WRITE);
+		uint8_t temp_int = twi_read_nack();
+		twi_start((addr<<1) + TWI_WRITE);
+		twi_write(3);
+		twi_start((addr<<1) + TWI_WRITE);
+		uint8_t temp_frc = twi_read_nack();
+		itoa(temp_int, tempint_string, 10);
+		itoa(temp_frc, temfrc_string, 10);
+		uart_puts("Temperature: ");
+		uart_puts(tempint_string);
+		uart_puts(".");
+		uart_puts(temfrc_string);
+		uart_puts("\r\n");
+		// Move to the next state
+		state = STATE_CHECK;
+		break;
 
-    // If something unexpected happens then move to IDLE
-    default:
-        state = STATE_IDLE;
-        break;
-    }
+		// Get checksum
+		case STATE_CHECK:
+		// WRITE YOUR CODE HERE
+		twi_start((addr<<1) + TWI_WRITE);
+		twi_write(4);
+		twi_start((addr<<1) + TWI_WRITE);
+		uint8_t checksum = twi_read_nack();
+		itoa(checksum, checksum_string, 10);
+		uart_puts("Checksum: ");
+		uart_puts(checksum_string);
+		uart_puts("\r\n");
+		uart_puts("------------");
+		uart_puts("\r\n");
+		// Move to the next state
+		state = STATE_IDLE;
+		break;
+
+		default:
+		state = STATE_IDLE;
+		break;
+	}
+	 
 }

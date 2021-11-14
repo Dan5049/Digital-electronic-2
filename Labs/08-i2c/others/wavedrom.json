@@ -1,0 +1,15 @@
+{signal: [
+  {name: 'Data', 	wave: 'x34.........6.........5.........x.',
+   					data: 'start write_adress+ACK 4+ACK checksum+NACK',
+   					node: ''					
+  },
+  {name: 'SDA', wave: 'hphpnh.pl........nplnhl.....nh.plh'},
+  {name: 'SCLK', wave: 'h.lP.......plP.......plP.......ph.'},
+  {node: '....AB', phase: 0.15}
+],
+  
+ head: {
+   tick: -1,
+   every: 1
+ }
+}

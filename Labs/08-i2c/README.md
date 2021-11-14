@@ -31,10 +31,8 @@ ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM
     static uint8_t addr = 7;            // I2C slave address
-    uint8_t temp = 0;                   // temperature
     uint8_t result = 1;                 // ACK result from the bus
     char uart_string[2] = "00"; // String for converting numbers by itoa()
-    char temp_string[8] = "00";
 
     // FSM
     switch (state)
@@ -97,4 +95,4 @@ Consider an application for temperature and humidity measurement and display. Us
 
 1. FSM state diagram picture of meteo station. The image can be drawn on a computer or by hand. Concise name of individual states and describe the transitions between them.
 
-   ![Scheme](images/)
+   ![Meteo Station](images/FSM.svg)
