@@ -95,7 +95,7 @@ F 3 "~" H 3400 4100 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L arduino_lcd:DS1 LCD1
+L TemperatureMeter-rescue:DS1-arduino_lcd LCD1
 U 1 1 618493AF
 P 5950 2100
 F 0 "LCD1" H 6881 2015 50  0000 L CNN

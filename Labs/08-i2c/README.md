@@ -7,20 +7,21 @@ Link to this file in your GitHub repository:
 ### Arduino Uno pinout
 
 1. In the picture of the Arduino Uno board, mark the pins that can be used for the following functions:
-   * PWM generators from Timer0, Timer1, Timer2
-   * analog channels for ADC
-   * UART pins
-   * I2C pins
-   * SPI pins
-   * external interrupt pins INT0, INT1
+   * PWM generators from Timer0, Timer1, Timer2 - 3, 5, 6, 9, 10, 11, with ~ sign
+   * analog channels for ADC - A0, A1, A2, A3, A4, A5
+   * UART pins - RX, TX
+   * I2C pins - SCL, SDA, A4, A5
+   * SPI pins - 10, 11, 12, 13
+   * external interrupt pins INT0, INT1 - 2, 3
 
-   ![your figure](Images/arduino_uno_pinout.png)
+   ![your figure](images/ArduinoPinout.png)
 
 ### I2C
 
 1. Code listing of Timer1 overflow interrupt service routine for scanning I2C devices and rendering a clear table on the UART.
 
 ```c
+/* Interrupt service routines ----------------------------------------*/
 /**********************************************************************
  * Function: Timer/Counter1 overflow interrupt
  * Purpose:  Update Finite State Machine and test I2C slave addresses 
@@ -30,8 +31,10 @@ ISR(TIMER1_OVF_vect)
 {
     static state_t state = STATE_IDLE;  // Current state of the FSM
     static uint8_t addr = 7;            // I2C slave address
+    uint8_t temp = 0;                   // temperature
     uint8_t result = 1;                 // ACK result from the bus
     char uart_string[2] = "00"; // String for converting numbers by itoa()
+    char temp_string[8] = "00";
 
     // FSM
     switch (state)
@@ -40,7 +43,8 @@ ISR(TIMER1_OVF_vect)
     case STATE_IDLE:
         addr++;
         // If slave address is between 8 and 119 then move to SEND state
-
+        if (addr < 120) state = STATE_SEND;
+            else addr = 7;
         break;
     
     // Transmit I2C slave address and get result
@@ -56,13 +60,23 @@ ISR(TIMER1_OVF_vect)
         twi_stop();
         /* Test result from I2C bus. If it is 0 then move to ACK state, 
          * otherwise move to IDLE */
-
+        if (result == 0) {
+            state = STATE_ACK;
+        }
+        else {
+            state = STATE_IDLE;
+        }
         break;
 
     // A module connected to the bus was found
     case STATE_ACK:
         // Send info about active I2C slave to UART and move to IDLE
-
+        uart_puts("Addr:");             //address reading
+        itoa(addr, uart_string, 16);
+        uart_puts(uart_string);
+        uart_puts("\r\n");
+        
+        state = STATE_IDLE;
         break;
 
     // If something unexpected happens then move to IDLE
@@ -83,4 +97,4 @@ Consider an application for temperature and humidity measurement and display. Us
 
 1. FSM state diagram picture of meteo station. The image can be drawn on a computer or by hand. Concise name of individual states and describe the transitions between them.
 
-   ![your figure]()
+   ![Scheme](images/)
