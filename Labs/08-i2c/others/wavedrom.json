@@ -1,11 +1,13 @@
 {signal: [
-  {name: 'Data', 	wave: 'x34.........6.........3.6.........5.........3.',
-   					data: 'start write_adress+ACK 4+ACK start write_adress+ACK checksum+NACK end',
+  {name: 'Data', 	wave: 'x34........54........53.4........54........63.',
+   					data: 'start write_adress ACK write_4 ACK start write_adress ACK checksum NACK end',
    					node: ''					
   },
   {name: 'SDA', wave: 'hphpnh.pl.......npl..nhphpnh.pl...h.pl..nh....'},
   {name: 'SCLK', wave: 'h.lP.......plP.......plhlP.......plP.......ph.'},
-  {node: '....AB', phase: 0.15}
+  {name: 'Control',
+    wave: 'x3.........53........53..........5.........3..',
+    data: 'master slave master slave master slave master'}
 ],
   
  head: {
