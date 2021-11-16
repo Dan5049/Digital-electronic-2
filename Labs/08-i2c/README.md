@@ -14,7 +14,7 @@ Link to this file in your GitHub repository:
    * SPI pins - 10, 11, 12, 13
    * external interrupt pins INT0, INT1 - 2, 3
 
-   ![your figure](images/ArduinoPinout.png)
+   ![your figure](images/arduino_uno_pinout.png)
 
 ### I2C
 
@@ -87,7 +87,7 @@ ISR(TIMER1_OVF_vect)
 
 2. (Hand-drawn) picture of I2C signals when reading checksum (only 1 byte) from DHT12 sensor. Indicate which specific moments control the data line master and which slave.
 
-   ![your figure]()
+   ![I2C signals](images/I2C.png)
 
 ### Meteo station
 

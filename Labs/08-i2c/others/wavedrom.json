@@ -1,10 +1,10 @@
 {signal: [
-  {name: 'Data', 	wave: 'x34.........6.........5.........x.',
-   					data: 'start write_adress+ACK 4+ACK checksum+NACK',
+  {name: 'Data', 	wave: 'x34.........6.........3.6.........5.........3.',
+   					data: 'start write_adress+ACK 4+ACK start write_adress+ACK checksum+NACK end',
    					node: ''					
   },
-  {name: 'SDA', wave: 'hphpnh.pl........nplnhl.....nh.plh'},
-  {name: 'SCLK', wave: 'h.lP.......plP.......plP.......ph.'},
+  {name: 'SDA', wave: 'hphpnh.pl.......npl..nhphpnh.pl...h.pl..nh....'},
+  {name: 'SCLK', wave: 'h.lP.......plP.......plhlP.......plP.......ph.'},
   {node: '....AB', phase: 0.15}
 ],
   

@@ -179,7 +179,7 @@ ISR(TIMER1_OVF_vect)
  10a:	cd bf       	out	0x3d, r28	; 61
 	
 	static state_t state = STATE_IDLE;  // Current state of the FSM
-	static uint8_t addr = 0x57;  // I2C slave address of DHT12
+	static uint8_t addr = 0x5c;  // I2C slave address of DHT12
 	uint8_t value;               // Data obtained from the I2C bus
 	char uart_string[] = "000";  // String for converting numbers by itoa()
 	char humint_string[2] = "00";
@@ -230,25 +230,25 @@ ISR(TIMER1_OVF_vect)
 		case STATE_HUMID:
 		// WRITE YOUR CODE HERE
 		twi_start((addr<<1) + TWI_WRITE);
- 14a:	8e ea       	ldi	r24, 0xAE	; 174
+ 14a:	88 eb       	ldi	r24, 0xB8	; 184
  14c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		twi_write(0);
  150:	80 e0       	ldi	r24, 0x00	; 0
  152:	0e 94 9a 01 	call	0x334	; 0x334 <twi_write>
 		twi_start((addr<<1) + TWI_WRITE);
- 156:	8e ea       	ldi	r24, 0xAE	; 174
+ 156:	88 eb       	ldi	r24, 0xB8	; 184
  158:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		uint8_t humid_int = twi_read_nack();
  15c:	0e 94 a5 01 	call	0x34a	; 0x34a <twi_read_nack>
  160:	08 2f       	mov	r16, r24
 		twi_start((addr<<1) + TWI_WRITE);
- 162:	8e ea       	ldi	r24, 0xAE	; 174
+ 162:	88 eb       	ldi	r24, 0xB8	; 184
  164:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		twi_write(1);
  168:	81 e0       	ldi	r24, 0x01	; 1
  16a:	0e 94 9a 01 	call	0x334	; 0x334 <twi_write>
 		twi_start((addr<<1) + TWI_WRITE);
- 16e:	8e ea       	ldi	r24, 0xAE	; 174
+ 16e:	88 eb       	ldi	r24, 0xB8	; 184
  170:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		uint8_t humid_frc = twi_read_nack();
  174:	0e 94 a5 01 	call	0x34a	; 0x34a <twi_read_nack>
@@ -306,25 +306,25 @@ ISR(TIMER1_OVF_vect)
 		case STATE_TEMP:
 		// WRITE YOUR CODE HERE
 		twi_start((addr<<1) + TWI_WRITE);
- 1ca:	8e ea       	ldi	r24, 0xAE	; 174
+ 1ca:	88 eb       	ldi	r24, 0xB8	; 184
  1cc:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		twi_write(2);
  1d0:	82 e0       	ldi	r24, 0x02	; 2
  1d2:	0e 94 9a 01 	call	0x334	; 0x334 <twi_write>
 		twi_start((addr<<1) + TWI_WRITE);
- 1d6:	8e ea       	ldi	r24, 0xAE	; 174
+ 1d6:	88 eb       	ldi	r24, 0xB8	; 184
  1d8:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		uint8_t temp_int = twi_read_nack();
  1dc:	0e 94 a5 01 	call	0x34a	; 0x34a <twi_read_nack>
  1e0:	08 2f       	mov	r16, r24
 		twi_start((addr<<1) + TWI_WRITE);
- 1e2:	8e ea       	ldi	r24, 0xAE	; 174
+ 1e2:	88 eb       	ldi	r24, 0xB8	; 184
  1e4:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		twi_write(3);
  1e8:	83 e0       	ldi	r24, 0x03	; 3
  1ea:	0e 94 9a 01 	call	0x334	; 0x334 <twi_write>
 		twi_start((addr<<1) + TWI_WRITE);
- 1ee:	8e ea       	ldi	r24, 0xAE	; 174
+ 1ee:	88 eb       	ldi	r24, 0xB8	; 184
  1f0:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		uint8_t temp_frc = twi_read_nack();
  1f4:	0e 94 a5 01 	call	0x34a	; 0x34a <twi_read_nack>
@@ -376,13 +376,13 @@ ISR(TIMER1_OVF_vect)
 		case STATE_CHECK:
 		// WRITE YOUR CODE HERE
 		twi_start((addr<<1) + TWI_WRITE);
- 24a:	8e ea       	ldi	r24, 0xAE	; 174
+ 24a:	88 eb       	ldi	r24, 0xB8	; 184
  24c:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		twi_write(4);
  250:	84 e0       	ldi	r24, 0x04	; 4
  252:	0e 94 9a 01 	call	0x334	; 0x334 <twi_write>
 		twi_start((addr<<1) + TWI_WRITE);
- 256:	8e ea       	ldi	r24, 0xAE	; 174
+ 256:	88 eb       	ldi	r24, 0xB8	; 184
  258:	0e 94 7c 01 	call	0x2f8	; 0x2f8 <twi_start>
 		uint8_t checksum = twi_read_nack();
  25c:	0e 94 a5 01 	call	0x34a	; 0x34a <twi_read_nack>

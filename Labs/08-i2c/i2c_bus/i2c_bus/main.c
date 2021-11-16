@@ -152,7 +152,7 @@ ISR(TIMER1_OVF_vect)
 	temp = twi_read_nack();*/
 	
 	static state_t state = STATE_IDLE;  // Current state of the FSM
-	static uint8_t addr = 0x57;  // I2C slave address of DHT12
+	static uint8_t addr = 0x5c;  // I2C slave address of DHT12
 	uint8_t value;               // Data obtained from the I2C bus
 	char uart_string[] = "000";  // String for converting numbers by itoa()
 	char humint_string[2] = "00";

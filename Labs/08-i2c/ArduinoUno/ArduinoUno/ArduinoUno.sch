@@ -14,17 +14,17 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 Text GLabel 1550 4300 0    50   Input ~ 0
-PWM
+PWM2
 Text GLabel 2000 4500 0    50   Input ~ 0
-PWM
+PWM0
 Text GLabel 2000 4600 0    50   Input ~ 0
-PWM
+PWM0
 Text GLabel 1550 5100 0    50   Input ~ 0
-PWM
+PWM2
 Text GLabel 1550 4900 0    50   Input ~ 0
-PWM
+PWM1
 Text GLabel 2000 4900 0    50   Input ~ 0
-PWM
+PWM1
 Text GLabel 3600 4600 2    50   Input ~ 0
 ADC
 Text GLabel 3600 4700 2    50   Input ~ 0
@@ -69,12 +69,6 @@ Wire Wire Line
 	2250 4600 2000 4600
 Wire Wire Line
 	2250 4900 2000 4900
-Wire Wire Line
-	2250 5000 1750 5000
-Wire Wire Line
-	1750 5000 1750 4900
-Wire Wire Line
-	1750 4900 1550 4900
 Wire Wire Line
 	2250 5100 1750 5100
 Wire Wire Line
@@ -123,9 +117,6 @@ Connection ~ 3900 5100
 Wire Wire Line
 	3900 5100 4050 5100
 Wire Wire Line
-	1750 5000 1550 5000
-Connection ~ 1750 5000
-Wire Wire Line
 	1550 5200 1750 5200
 Wire Wire Line
 	1750 5200 1750 5100
@@ -151,4 +142,13 @@ U 618C7E81
 F0 "Sheet618C7E80" 50
 F1 "file618C7E80.sch" 50
 $EndSheet
+Wire Wire Line
+	1550 5000 1650 5000
+Wire Wire Line
+	1550 4900 1650 4900
+Wire Wire Line
+	1650 4900 1650 5000
+Connection ~ 1650 5000
+Wire Wire Line
+	1650 5000 2250 5000
 $EndSCHEMATC
